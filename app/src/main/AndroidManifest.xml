@@ -1,0 +1,56 @@
+<?xml version="1.0" encoding="utf-8"?>
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="dieuninh.com.learnvocabulary.learnvocabulary">
+
+    <uses-permission android:name="android.permission.SYSTEM_ALERT_WINDOW" />
+    <uses-permission android:name="android.permission.DISABLE_KEYGUARD" />
+    <uses-permission android:name="android.permission.WAKE_LOCK" />
+    <uses-permission android:name="android.permission.RECEIVE_BOOT_COMPLETED" />
+    <uses-permission android:name="android.permission.READ_PHONE_STATE" />
+    <uses-permission android:name="android.permission.VIBRATE" />
+<uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
+    <application
+        android:allowBackup="true"
+        android:hardwareAccelerated="false"
+        android:icon="@drawable/logo_lv"
+        android:label="@string/app_name"
+        android:largeHeap="true"
+        android:supportsRtl="true"
+        android:theme="@style/AppTheme">
+        <activity android:name=".activities.MainActivity">
+            <intent-filter>
+                <action android:name="android.intent.action.MAIN" />
+
+                <category android:name="android.intent.category.LAUNCHER" />
+            </intent-filter>
+        </activity>
+        <activity android:name=".activities.AddVocabularyActivity" />
+        <activity android:name=".activities.TestActivity" />
+        <activity android:name=".activities.SettingsActivity" />
+
+        <service
+            android:name=".services.VoService"
+            android:enabled="true"
+            android:exported="true" />
+        <service
+            android:name=".services.LockScreenService"
+            android:enabled="true"
+            android:exported="true" />
+
+        <receiver
+            android:name=".services.VoReceiver"
+            android:enabled="true">
+            <intent-filter>
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+                <action android:name="android.intent.action.SCREEN_OFF" />
+            </intent-filter>
+        </receiver>
+
+        <activity android:name=".activities.VocaListActivity" />
+
+        <receiver
+            android:name=".services.AlertReceiver"
+            android:enabled="true"> </receiver>
+    </application>
+
+</manifest>

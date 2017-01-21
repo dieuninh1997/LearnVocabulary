@@ -1,0 +1,270 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <string-array name="tu">
+        <item>Criminal</item>
+        <item>Crime</item>
+        <item>Severe</item>
+        <item>Severity</item>
+        <item>Sensible</item>
+        <item>Sense</item>
+        <item>Sensibly</item>
+        <item>Distinguish</item>
+        <item>Distinguishable</item>
+        <item>Distinguished</item>
+        <item>Unreadable</item>
+        <item>Illegible</item>
+        <item>Readable</item>
+        <item>Eliminate</item>
+        <item>Discriminate</item>
+        <item>Occurrence</item>
+        <item>Dissimilar</item>
+        <item>Socially</item>
+        <item>Gregarious</item>
+        <item>Fluctuate</item>
+        <item>Constantly</item>
+        <item>Perceive</item>
+        <item>Guilt</item>
+        <item>Inconceivable</item>
+        <item>Wealth</item>
+        <item>Universe</item>
+        <item>Exception</item>
+        <item>Merely</item>
+        <item>Temperament</item>
+        <item>Upbringing</item>
+        <item>Nationality</item>
+        <item>Bubble</item>
+        <item>Whistle</item>
+        <item>Audible</item>
+        <item>Manifestation</item>
+        <item>Supernatural</item>
+        <item>Demon</item>
+        <item>Seashore</item>
+        <item>Judge</item>
+        <item>Inseparable</item>
+        <item>Dawn</item>
+        <item>Specialist</item>
+        <item>Relate</item>
+        <item>Anchor</item>
+        <item>Illustrious=famous</item>
+        <item>Random</item>
+        <item>Interpret= Comprehend= understand</item>
+        <item>Knob</item>
+        <item>Juggle</item>
+        <item>(Fiddle) about,at,which...</item>
+        <item>(Shuffle) on </item>
+        <item>(Shuffle) off </item>
+        <item>(Tamper) with</item>
+        <item>Deception</item>
+        <item>Fraud</item>
+        <item>Embezzlement</item>
+        <item>Forged</item>
+        <item>Ears</item>
+        <item>Copper</item>
+        <item>Mistrust</item>
+        <item>Mislead</item>
+        <item>Folly</item>
+        <item>Sheer</item>
+        <item>Initial</item>
+        <item>Magnificent</item>
+        <item>(Tend) to V</item>
+        <item>Substance</item>
+        <item>Magnitude</item>
+        <item>Destruction</item>
+        <item> A feat of arms</item>
+        <item>Daredevil</item>
+        <item>Goodwill</item>
+        <item>Curve</item>
+        <item>Mission</item>
+        <item>Compliment</item>
+        <item>Reproachfully</item>
+        <item>Ignore</item>
+        <item>Umpire</item>
+        <item>Counsel</item>
+        <item>Recruit</item>
+        <item>(Peter) out</item>
+        <item>Chapel</item>
+        <item>Standard</item>
+        <item>(File)</item>
+        <item>All at one= Suddenly</item>
+        <item>Postpone= delay</item>
+        <item>Superior</item>
+        <item>Outstanding</item>
+        <item>Debt</item>
+        <item>Helmet</item>
+        <item>Down-to-earth</item>
+        <item>Attract</item>
+        <item>Start-up</item>
+        <item>Explicit</item>
+        <item>Eager</item>
+        <item>Capableness</item>
+        <item>Efficacy</item>
+        <item>Persist</item>
+        <item>Undo</item>
+        <item>Fearsome</item>
+        <item>Streamline</item>
+        <item>Filter</item>
+        <item>Relentlessly</item>
+        <item>Mime</item>
+        <item>Prevail</item>
+        <item>Watershed</item>
+        <item>Borderline</item>
+        <item>Inedible</item>
+        <item>Bewilderment</item>
+        <item>Outlive</item>
+        <item>Striking= outstanding</item>
+        <item>Onlooker</item>
+        <item>Stand-off</item>
+<item>Overt</item>
+        <item>Object</item>
+        <item>Delight</item>
+        <item>Meaningless</item>
+        <item>Secure</item>
+        <item>Console</item>
+        <item>Estimate</item>
+        <item>Sky</item>
+        <item>Comply</item>
+        <item>Consent</item>
+        <item>Assent</item>
+        <item>Conscience</item>
+        <item>Element</item>
+        <item>Quarrel</item>
+        <item>Withhod</item>
+        <item>Dispose</item>
+        <item>Engage</item>
+        <item>Propose</item>
+
+    </string-array>
+    <string-array name="nghia">
+        <item>(a) phạm tội</item>
+        <item>(n) tội ác</item>
+        <item>(a) khủng khiếp</item>
+        <item>(n) tính ác liệt</item>
+        <item>(a) có óc xét đoán, thời thượng (quần áo)</item>
+        <item>(n) giác quan</item>
+        <item>(adv) một cách hợp lý</item>
+        <item>(v) phân biệt</item>
+        <item>(a) có thể nhận ra, phân biệt được</item>
+        <item>(a) đang hoàng, đặc sắc</item>
+        <item>(a)(chữ viết xấu, bẩn làm) khó đọc, chán</item>
+        <item>(a) khó đọc, không đọc được ( do chữ viết, tác động ngoại cảnh)</item>
+        <item>(a) hay, đọc được</item>
+        <item>(v_) loại trừ, loại ra</item>
+        <item>(v) phân biệt</item>
+        <item>(n) sự kiện, sự cố</item>
+        <item>(a) không giống, không đồng dạng</item>
+        <item>có tính chất xã hội</item>
+        <item>(a)sống bầy đàn, thích giao du</item>
+        <item>(v) dao động, thay đổi thất thường</item>
+        <item>liên tục, luôn luôn</item>
+        <item>(v_) hiểu được</item>
+        <item>(n) Tội lỗi</item>
+        <item>(a) không thể hiểu được, kỳ lạ, phi thường</item>
+        <item>(n) sự giàu có</item>
+        <item>(n) vũ trụ, vạn vật</item>
+        <item>(n) Ngoại lệ</item>
+        <item>(adv) chỉ, đơn thuần</item>
+        <item>(n) khí chất, tính khí</item>
+        <item>(n) sự giáo dục, dạy dỗ (trẻ con)</item>
+        <item> Quốc tịch</item>
+        <item>(v) nổi bong bóng</item>
+        <item>(n)(v)(v_) huýt sáo</item>
+        <item>(a) nghe rõ</item>
+        <item>(n) sự biểu lộ</item>
+        <item>(a) siêu nhiên</item>
+        <item>(n) ma quỷ</item>
+        <item>(n) bờ biển</item>
+        <item>(n) quan tòa, thẩm phán</item>
+        <item>(a) không thể tách rời</item>
+        <item>(n) Bình minh, buổi đầu</item>
+        <item>(n) chuyên gia</item>
+        <item>(v) liên quan</item>
+        <item>(n) mỏ neo; (v) bám chặt</item>
+        <item>(a) nổi tiếng</item>
+        <item>(n) ẩu, ngẫu nhiên</item>
+        <item>(v) hiểu, làm sáng tỏ</item>
+        <item>(n) nút bấm</item>
+        <item>(v) tung hứng</item>
+        <item>(v) nghịch vớ vẩn, nghịch lung tung</item>
+        <item>(v) lúng túng mặc vội vào</item>
+        <item>(v) lúng túng cởi vội vào</item>
+        <item>(v) can thiệp vào, làm xáo trộn</item>
+        <item>(n) sự dối trá</item>
+        <item>(n) sự gian lận</item>
+        <item>(n) sự tham ô</item>
+        <item>(a) giả mạo</item>
+        <item>(n) Bình (có quai)</item>
+        <item>(n) cớm ( 1 từ khác chỉ cảnh sát police)</item>
+        <item>(n)(v_) không tin, nghi ngờ</item>
+        <item>(v) làm cho lầm đường, lạc lối</item>
+        <item>(n) sự điên rồ, dại dột</item>
+        <item>(a) tuyệt đối, hoàn toàn</item>
+        <item>(a) lúc đầu; (n) chữ đầu</item>
+        <item>(a) tuyệt diệu</item>
+        <item>(v) có ý định</item>
+        <item>(n) vật chất</item>
+        <item>cường độ</item>
+        <item>(n) phá hủy</item>
+        <item>(n) chiến công</item>
+        <item>(n) người liều lĩnh; (adj) táo bạo</item>
+        <item>Thiện chí</item>
+        <item>(n) đường cong</item>
+        <item>(n) sứ mệnh, nhiệm vụ</item>
+        <item>(v) khen ngợi</item>
+        <item>Quở trách, mắng mỏ</item>
+        <item>lờ đi</item>
+        <item>(n) trọng tài (với các môn quần vợt)</item>
+        <item>(v) khuyên răn</item>
+        <item>tuyển dụng</item>
+        <item>đuối dần, mất dần</item>
+        <item>Nhà thờ nhỏ</item>
+        <item>trình độ, mức</item>
+        <item>(v) đi thành hàng</item>
+        <item>đột nhiên</item>
+        <item>(v) hoãn( chậm, không hủy)</item>
+        <item>hợm hĩnh, làm cao</item>
+        <item>(a) nổi bật</item>
+        <item>Món nợ</item>
+        <item>mũ bảo hiểm</item>
+        <item>thực tế, không viển vông</item>
+        <item>thu hút</item>
+        <item>sự khởi động</item>
+        <item>(a) rõ ràng, dứt khoát (nói về thái độ)</item>
+        <item>(a) háo hức, ham muốn</item>
+        <item>(n) có khả năng</item>
+        <item>(n) hiệu quả</item>
+        <item>kiên trì, kiên nhẫn</item>
+        <item>xóa bỏ, hủy</item>
+        <item>sợ sệt, rụt rè</item>
+        <item>dòng nước</item>
+<item>máy lọc</item>
+            <item>tàn nhẫn</item>
+        <item>Kịch câm</item>
+        <item>thuyết phục</item>
+        <item>(n) bước ngoặt trong các sự kiện</item>
+        <item>ranh giới</item>
+        <item>(a) không ăn được, có độc</item>
+        <item>sự bối rối, sự hoang mang</item>
+        <item>sống lâu hơn</item>
+        <item>nổi bật, đáng chú ý, gây ấn tượng</item>
+        <item>người xem</item>
+<item>sự xa cách</item>
+        <item>(a)công khai</item>
+        <item>(v) phản đối</item>
+        <item>(n)(v) vui thích</item>
+        <item>(a)vô nghĩa</item>
+        <item>Bảo vệ</item>
+        <item>(v) an ủi</item>
+        <item>ước tính</item>
+        <item>(a) rụt rè, thiếu tự tin</item>
+        <item>tuân theo</item>
+        <item>bằng lòng</item>
+        <item>đồng ý, tán thành</item>
+        <item>Lương tâm</item>
+        <item>yếu tố, nguyên tố</item>
+        <item>cãi nhau,tranh chấp </item>
+        <item>từ chối không cho, không làm</item>
+        <item>sẵn sàng</item>
+        <item>đính hôn</item>
+        <item>cầu hôn</item>
+    </string-array>
+</resources>

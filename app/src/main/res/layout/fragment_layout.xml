@@ -1,0 +1,71 @@
+<?xml version="1.0" encoding="utf-8"?>
+<LinearLayout
+    xmlns:android="http://schemas.android.com/apk/res/android"
+    android:paddingLeft="@dimen/activity_horizontal_margin"
+    android:paddingRight="@dimen/activity_horizontal_margin"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:layout_gravity="center_horizontal|center_vertical"
+    android:gravity="left|center_vertical"
+    android:orientation="vertical"
+    android:weightSum="1">
+    <TextView
+        android:id="@+id/tv_newword"
+        android:layout_width="match_parent"
+        android:layout_height="100dp"
+        android:text="New Word"
+        android:gravity="center_horizontal|center_vertical"
+        android:background="@drawable/bg"
+        android:singleLine="false"
+        android:textSize="24sp" />
+    <LinearLayout
+        android:paddingLeft="@dimen/activity_horizontal_margin"
+        android:paddingRight="@dimen/activity_horizontal_margin"
+        android:orientation="vertical"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content">
+        <Button
+            android:gravity="left"
+            android:paddingLeft="20dp"
+            android:id="@+id/one"
+            android:layout_width="match_parent"
+            android:layout_height="50dp"
+            android:text="A"
+            android:textColor="#035e70"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp"
+            />
+
+        <Button
+            android:gravity="left"
+            android:paddingLeft="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:text="B"
+            android:textColor="#035e70"
+            android:id="@+id/two"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp" />
+        <Button
+            android:gravity="left"
+            android:paddingLeft="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:text="C"
+            android:textColor="#035e70"
+            android:id="@+id/three"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp" />
+        <Button
+            android:gravity="left"
+            android:paddingLeft="20dp"
+            android:layout_width="fill_parent"
+            android:layout_height="50dp"
+            android:text="D"
+            android:textColor="#035e70"
+            android:id="@+id/four"
+            android:layout_weight="1"
+            android:layout_marginTop="10dp" />
+
+    </LinearLayout>
+</LinearLayout>
