@@ -2,11 +2,9 @@ package dieuninh.com.learnvocabulary.learnvocabulary.activities;
 
 import android.app.SearchManager;
 import android.content.Context;
-import android.database.MatrixCursor;
 import android.graphics.Color;
-import android.provider.BaseColumns;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.support.v7.widget.SearchView;
@@ -15,25 +13,21 @@ import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
 import android.widget.CursorAdapter;
-import android.widget.RelativeLayout;
-import android.widget.SimpleCursorAdapter;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
-import java.util.Collections;
-import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import dieuninh.com.learnvocabulary.learnvocabulary.R;
 import dieuninh.com.learnvocabulary.learnvocabulary.adapters.VocabularyResultAdapter;
 import dieuninh.com.learnvocabulary.learnvocabulary.application.AppController;
-import dieuninh.com.learnvocabulary.learnvocabulary.models.DatabaseHandler;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
 
 public class VocaListActivity extends AppCompatActivity {
 
-    public static RelativeLayout frRoot;
+    public static LinearLayout frRoot;
     @Bind(R.id.rcv_voca)
     RecyclerView rcvVocabulary;
     TextView tv_thongbao;
@@ -58,7 +52,7 @@ public class VocaListActivity extends AppCompatActivity {
         final int[]to=new int[]{android.R.id.text1};
         searchAdapter= new android.support.v4.widget.SimpleCursorAdapter(this,android.R.layout.simple_list_item_1,null,from,to, CursorAdapter.FLAG_REGISTER_CONTENT_OBSERVER);
 
-        frRoot = (RelativeLayout) findViewById(R.id.frRoot);
+        frRoot = (LinearLayout) findViewById(R.id.frRoot);
         tv_thongbao= (TextView) findViewById(R.id.tv_thongbao);
         ButterKnife.bind(this);
         list = (ArrayList<Vocabulary>) AppController.getInstance().getListVocabularies();
@@ -72,6 +66,7 @@ public class VocaListActivity extends AppCompatActivity {
             adapter = new VocabularyResultAdapter(this, list);
             rcvVocabulary.setAdapter(adapter);
         }
+
     }
     @Override
     public boolean onCreateOptionsMenu(Menu menu) {

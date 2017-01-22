@@ -2,21 +2,16 @@ package dieuninh.com.learnvocabulary.learnvocabulary.activities;
 
 import android.app.ActivityManager;
 import android.app.AlarmManager;
-import android.app.Notification;
 import android.app.NotificationManager;
 import android.app.PendingIntent;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
-import android.database.Cursor;
 import android.graphics.Bitmap;
 import android.graphics.drawable.Drawable;
-import android.os.Build;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.util.Log;
-import android.view.View;
-import android.view.WindowManager;
 import android.widget.CompoundButton;
 import android.widget.Switch;
 import android.widget.Toast;
@@ -24,22 +19,15 @@ import android.widget.Toast;
 import com.squareup.picasso.Picasso;
 import com.squareup.picasso.Target;
 
-import java.util.Calendar;
-import java.util.GregorianCalendar;
 import java.util.List;
-import java.util.Random;
 
 import br.com.goncalves.pugnotification.interfaces.ImageLoader;
 import br.com.goncalves.pugnotification.interfaces.OnImageLoadingCompleted;
-import br.com.goncalves.pugnotification.interfaces.PendingIntentNotification;
-import br.com.goncalves.pugnotification.notification.Load;
-import br.com.goncalves.pugnotification.notification.PugNotification;
 import dieuninh.com.learnvocabulary.learnvocabulary.R;
 import dieuninh.com.learnvocabulary.learnvocabulary.application.AppController;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.DatabaseHandler;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
 import dieuninh.com.learnvocabulary.learnvocabulary.services.AlertReceiver;
-import dieuninh.com.learnvocabulary.learnvocabulary.services.LockScreenService;
 import dieuninh.com.learnvocabulary.learnvocabulary.services.VoService;
 
 public class SettingsActivity extends AppCompatActivity implements ImageLoader {
@@ -60,14 +48,14 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
 
         //set fullscreen
         //View.SYSTEM_UI_FLAG_IMMERSIVE is only on API 19+
-        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        if (Build.VERSION.SDK_INT < 19) {
-            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-
-        } else {
-            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE);
-        }
+//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
+//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
+//        if (Build.VERSION.SDK_INT < 19) {
+//            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
+//
+//        } else {
+//            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE);
+//        }
         mContext = this;
         setContentView(R.layout.activity_settings);
 
