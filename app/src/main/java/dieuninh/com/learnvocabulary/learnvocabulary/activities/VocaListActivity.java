@@ -72,7 +72,7 @@ public class VocaListActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main,menu);
 
-        SearchManager searchManager= (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+      //  SearchManager searchManager= (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView= (SearchView) menu.findItem(R.id.menu_search).getActionView();
 
         searchAutoComplete= (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
@@ -105,43 +105,13 @@ public class VocaListActivity extends AppCompatActivity {
             }
         });
 
-        /*    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-        searchView.setSuggestionsAdapter(searchAdapter);
-        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-            @Override
-            public boolean onQueryTextSubmit(String query) {
-                return false;
-            }
-            @Override
-            public boolean onQueryTextChange(String newText) {
-                 getSuggestion(newText);
-                return true;
-            }
-        });
-
-        searchView.setOnSuggestionListener(new SearchView.OnSuggestionListener() {
-            @Override
-            public boolean onSuggestionSelect(int position) {
-                return true;
-            }
-
-            @Override
-            public boolean onSuggestionClick(int position) {
-              *//*  searchAdapter.getCursor().moveToPosition(position);
-                String query=searchAdapter.getCursor().getString(1);
-*//*
-                return true;
-            }
-        });*/
     return super.onCreateOptionsMenu(menu);
     }
 
     public void getSuggestion(String text)
     {
-//        MatrixCursor c=new MatrixCursor(new String[]{BaseColumns._ID,"tuSearch"});
         ArrayList<Vocabulary> itemSearchList=new ArrayList<Vocabulary>();
         String s=searchAutoComplete.getText().toString();
-        int s_length=s.length();
 
         String str_Nw, str_M;
         int list_size=list.size();
@@ -152,19 +122,16 @@ public class VocaListActivity extends AppCompatActivity {
             if(str_Nw.contains(s))
             {
                 itemSearchList.add(list.get(i));
-//                c.addRow(new Object[]{i,list.get(i).getNewWord()});
             }
             else
             if(str_M.contains(s))
             {
                 itemSearchList.add(list.get(i));
-//                c.addRow(new Object[]{i,list.get(i).getMeaning()});
             }
         }
         adapter = new VocabularyResultAdapter(VocaListActivity.this, itemSearchList);
         rcvVocabulary.setAdapter(adapter);
 
-//        adapter.notifyDataSetChanged();
     }
 
 }
