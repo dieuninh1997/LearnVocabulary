@@ -1,11 +1,11 @@
 package dieuninh.com.learnvocabulary.learnvocabulary.activities;
 
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
-import android.widget.RelativeLayout;
+import android.widget.LinearLayout;
 
 import com.wenchao.cardstack.CardStack;
 
@@ -18,14 +18,13 @@ import dieuninh.com.learnvocabulary.learnvocabulary.R;
 import dieuninh.com.learnvocabulary.learnvocabulary.adapters.CardsAdapter;
 import dieuninh.com.learnvocabulary.learnvocabulary.adapters.VocabularyResultAdapter;
 import dieuninh.com.learnvocabulary.learnvocabulary.application.AppController;
-import dieuninh.com.learnvocabulary.learnvocabulary.models.DatabaseHandler;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
 
 public class TestActivity extends AppCompatActivity {
     private CardStack mCardStack;
     private CardsAdapter mCardAdapter;
     public static String [] arrayList;
-    public static RelativeLayout frRoot;
+    public static LinearLayout frRoot;
 
     //android.support.design.widget.FloatingActionButton fab;
     @Bind(R.id.rcv_vocabulary)
@@ -42,7 +41,7 @@ public class TestActivity extends AppCompatActivity {
         ButterKnife.bind(this);
         arrayList = getResources().getStringArray(R.array.colors);
         mCardStack = (CardStack)findViewById(R.id.container);
-        frRoot = (RelativeLayout) findViewById(R.id.frRoot);
+        frRoot = (LinearLayout) findViewById(R.id.frRoot);
         mCardStack.setContentResource(R.layout.card_content);
 //
         list = AppController.getInstance().getListVocabularies();
