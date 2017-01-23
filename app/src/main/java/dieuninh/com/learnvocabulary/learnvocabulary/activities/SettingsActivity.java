@@ -56,6 +56,7 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
 //        } else {
 //            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE);
 //        }
+        //Thay doi o day
         mContext = this;
         setContentView(R.layout.activity_settings);
 
