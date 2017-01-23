@@ -32,12 +32,13 @@ public class AlertReceiver extends BroadcastReceiver {
         String nghia = getTu(num, 2);
 
 
-
+        Intent repeatingIntent= new Intent(context,VocaListActivity.class);
+        repeatingIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
         PendingIntent notifiIntent=PendingIntent.getActivity(context,0,
-                new Intent(context,VocaListActivity.class),0);
+             repeatingIntent  ,PendingIntent.FLAG_UPDATE_CURRENT);
         Load mLoad = PugNotification.with(context).load()
                 .smallIcon(R.drawable.ic_launcher)
-                .autoCancel(true)//false
+                .autoCancel(true)
                 .largeIcon(R.drawable.logo_lv)
                 .title(tuMoi)
                 .message(nghia)

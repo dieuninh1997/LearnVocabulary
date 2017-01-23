@@ -9,7 +9,7 @@ android {
         targetSdkVersion 23
         versionCode 1
         versionName "1.0"
-        multiDexEnabled true
+
         testInstrumentationRunner "android.support.test.runner.AndroidJUnitRunner"
     }
     buildTypes {
@@ -48,8 +48,6 @@ dependencies {
     compile 'com.github.halysongoncalves:pugnotification:1.8.1'
     compile 'com.squareup.picasso:picasso:2.5.2'
     compile 'com.github.rubensousa:raiflatbutton:0.1'
-    compile 'com.android.support:multidex:1.0.0'
-    compile 'com.github.leonardoxh:fake-search-view:0.3.1'
 
     testCompile 'junit:junit:4.12'
 }

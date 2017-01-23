@@ -29,7 +29,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 
     @Override
     public void onCreate(SQLiteDatabase db) {
-        String CREATE_VOCABULARY_TABLE="CREATE TABLE  IF NOT EXISTS "
+        String CREATE_VOCABULARY_TABLE="CREATE TABLE "
                 +TABLE_NAME+
                 "("+COL_ID+" INTEGER PRIMARY KEY AUTOINCREMENT,"+COL_NEWWORD+" TEXT ,"+
                 COL_MEAN+" TEXT"+")";
@@ -42,15 +42,15 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         db.execSQL("DROP TABLE IF EXISTS "+TABLE_NAME);
         this.onCreate(db);
     }
-    public int getVocabularyCount() {
+  /*  public int getVocabularyCount() {
         String countQuery = "SELECT * FROM " + TABLE_NAME;
         db = this.getReadableDatabase();
         Cursor cursor = db.rawQuery(countQuery, null);
         //cursor.close();
         return cursor.getCount();
-    }
+    }*/
     public List<Vocabulary> getAllVocabulary() {
-        List<Vocabulary> list = new ArrayList<Vocabulary>();
+        List<Vocabulary> list = new ArrayList<>();
 
         String selectQuery = "SELECT * FROM " + TABLE_NAME;
         db = this.getReadableDatabase();
@@ -67,6 +67,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
 
             } while (cursor.moveToNext());
         }
+        cursor.close();
         return list;
     }
 
@@ -100,7 +101,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         db.close();
     }
 
-    public void addData(int id,String new_word, String mean_new_word)
+  /*  public void addData(int id,String new_word, String mean_new_word)
     {
         db=this.getWritableDatabase();
         ContentValues cv=new ContentValues();
@@ -109,7 +110,7 @@ public class DatabaseHandler extends SQLiteOpenHelper{
         cv.put(COL_MEAN,mean_new_word);
         db.insert(TABLE_NAME,null,cv);
         db.close();
-    }
+    }*/
 
     public boolean addVocabulary(int id, String new_word, String mean_new_word)
     {

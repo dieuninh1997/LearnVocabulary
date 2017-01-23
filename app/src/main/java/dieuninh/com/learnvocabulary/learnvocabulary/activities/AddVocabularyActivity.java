@@ -58,6 +58,7 @@ public class AddVocabularyActivity extends AppCompatActivity implements View.OnC
                 List<Vocabulary> listVo = new ArrayList<>();
                 String tuMoi, nghia;
                 int id;
+                int err=0;
                 for (Vocabulary vs : list) {
                     id = vs.getId();
                     nghia = vs.getMeaning();
@@ -66,33 +67,41 @@ public class AddVocabularyActivity extends AppCompatActivity implements View.OnC
                         boolean kt = db.addVocabulary(id, tuMoi, nghia);
                         if (kt)
                             listVo.add(vs);
-//                           else {
-//                              Toast.makeText(this,"Fail Save ",Toast.LENGTH_SHORT).show();
-//                          }
                     }
-
+                    else
+                    {
+                        err++;
+                        //Toast.makeText(this,"Fail Save ",Toast.LENGTH_SHORT).show();
+                    }
                 }
-               //
-                Intent myIntent=new Intent(AddVocabularyActivity.this,MainActivity.class);
-                Bundle bundle=new Bundle();
-                int number=list.size();
-                bundle.putInt("number",number);
-                myIntent.putExtra("MyIntent",bundle);
-                startActivity(myIntent);
-                //
+                if(err>0)
+                {
+                    Toast.makeText(this,"Please fill out !",Toast.LENGTH_SHORT).show();
+                }
+                else {
+                    //
+                    Intent myIntent = new Intent(AddVocabularyActivity.this, MainActivity.class);
+                    Bundle bundle = new Bundle();
+                    int number = list.size();
+                    bundle.putInt("number", number);
+                    myIntent.putExtra("MyIntent", bundle);
+                    startActivity(myIntent);
+                    //
 
-                if (number > 0) {
-                    Toast.makeText(this, "Please remember Vocabulary to ready to contest", Toast.LENGTH_SHORT).show();
+                    if (number > 0) {
+                        Toast.makeText(this, "Please remember Vocabulary to ready to contest", Toast.LENGTH_SHORT).show();
 //                    return;
-                }
+                    }
 
 
 //                Log.e("ERROR list.size()=",db.getAllVocabulary().size()+"");
-                AppController.getInstance().setListVocabularies(db.getAllVocabulary());
-                //lôi ra nè
-               // number=AppController.getInstance().getListVocabularies().size();
-                startActivity(new Intent(AddVocabularyActivity.this, TestActivity.class));
-                finish();
+                    AppController.getInstance().setListVocabularies(db.getAllVocabulary());
+                    //lôi ra nè
+                    // number=AppController.getInstance().getListVocabularies().size();
+                    startActivity(new Intent(AddVocabularyActivity.this, TestActivity.class));
+
+                    finish();
+                }
                 break;
             }
             case R.id.fab_more: {

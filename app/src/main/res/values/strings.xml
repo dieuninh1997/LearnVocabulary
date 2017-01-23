@@ -3,4 +3,5 @@
     <string name="action_settings">Settings</string>
     <string name="new_word_1">Vocabulary %d</string>
     <string name="b_t_m_n_h_nh_kh_a">Bật màn hình khóa</string>
+    <string name="NewWord">New Word</string>
 </resources>

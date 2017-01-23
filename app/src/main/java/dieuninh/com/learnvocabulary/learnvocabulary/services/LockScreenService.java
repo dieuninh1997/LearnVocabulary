@@ -67,14 +67,15 @@ public class LockScreenService extends Service {
         //WindowManager.LayoutParams.TYPE_TOAST
         params.x = 0;
         params.y = 0;
-        params.gravity = Gravity.CENTER | Gravity.CENTER;
+        params.gravity =  Gravity.CENTER;
         LayoutInflater li = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         final RelativeLayout theme = (RelativeLayout) li.inflate(R.layout.vo_lockscreen, null);
         windowManager.addView(theme, params);
 
 
-        Random random = new Random();
-        int index = random.nextInt(4);
+        Random random ;//= new Random();
+        theme.setBackgroundResource(R.drawable.bg2);
+      /*  int index = random.nextInt(4);
         switch (index) {
             case 0:
                 theme.setBackgroundResource(R.drawable.bg2);
@@ -89,7 +90,7 @@ public class LockScreenService extends Service {
             case 3:
                 theme.setBackgroundResource(R.drawable.bg2);
                 break;
-        }
+        }*/
 
         //
         myDb = new DatabaseHandler(LockScreenService.this);
