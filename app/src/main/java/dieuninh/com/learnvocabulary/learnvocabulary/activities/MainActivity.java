@@ -46,7 +46,7 @@ public class MainActivity extends AppCompatActivity {
 
         AppController.getInstance().setListVocabularies(db.getAllVocabulary());
         num = AppController.getInstance().getListVocabularies().size();
-        tv_stortedwords.setText(String.format(String.valueOf(R.string.stored_number_words), num));
+        tv_stortedwords.setText(String.format("Stored %1$d  words", num));
 
 
       /*  cv_start.setOutlineProvider(new ViewOutlineProvider() {
@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                             mySharedPreference.removeVocaList();
 //                                Toast.makeText(getApplicationContext(),"Xoa thanh cong",Toast.LENGTH_SHORT).show();
                             num = 0;
-                            tv_stortedwords.setText(String.format(String.valueOf(R.string.stored_number_words), num));
+                            tv_stortedwords.setText(String.format("Stored %1$d  words", num));
                             Intent intent = new Intent(MainActivity.this, AddVocabularyActivity.class);
                             startActivity(intent);
                         }
@@ -141,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         Intent callerIntent = getIntent();
         Bundle bundleFromCaller = callerIntent.getBundleExtra("MyIntent");
         num = bundleFromCaller.getInt("number");
-        tv_stortedwords.setText(String.format(String.valueOf(R.string.stored_number_words), num));
+        tv_stortedwords.setText(String.format("Stored %1$d  words", num));
     }
 
     private void anhXa() {
