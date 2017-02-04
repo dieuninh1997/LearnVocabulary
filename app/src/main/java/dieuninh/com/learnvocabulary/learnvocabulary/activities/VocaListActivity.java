@@ -17,6 +17,7 @@ import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import java.util.ArrayList;
+import java.util.List;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
@@ -27,11 +28,11 @@ import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
 
 public class VocaListActivity extends AppCompatActivity {
 
-    public static LinearLayout frRoot;
+    public LinearLayout frRoot;
     @Bind(R.id.rcv_voca)
     RecyclerView rcvVocabulary;
     TextView tv_thongbao;
-    ArrayList<Vocabulary> list=null;
+    List<Vocabulary> list=null;
     VocabularyResultAdapter adapter;
     android.support.v4.widget.SimpleCursorAdapter searchAdapter;
     SearchView.SearchAutoComplete searchAutoComplete;
@@ -55,13 +56,13 @@ public class VocaListActivity extends AppCompatActivity {
         frRoot = (LinearLayout) findViewById(R.id.frRoot);
         tv_thongbao= (TextView) findViewById(R.id.tv_thongbao);
         ButterKnife.bind(this);
-        list = (ArrayList<Vocabulary>) AppController.getInstance().getListVocabularies();
+        list =  AppController.getInstance().getListVocabularies();
         rcvVocabulary.setLayoutManager(new LinearLayoutManager(this));
         rcvVocabulary.setHasFixedSize(true);
 
         int size = list.size();
         if (size == 0) {
-            tv_thongbao.setText("Empty List : 0 word(s)");
+            tv_thongbao.setText(R.string.text_of_number_words);
         } else {
             adapter = new VocabularyResultAdapter(this, list);
             rcvVocabulary.setAdapter(adapter);
@@ -72,7 +73,7 @@ public class VocaListActivity extends AppCompatActivity {
     public boolean onCreateOptionsMenu(Menu menu) {
         getMenuInflater().inflate(R.menu.menu_main,menu);
 
-      //  SearchManager searchManager= (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchManager searchManager= (SearchManager) getSystemService(Context.SEARCH_SERVICE);
         final SearchView searchView= (SearchView) menu.findItem(R.id.menu_search).getActionView();
 
         searchAutoComplete= (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
@@ -104,6 +105,9 @@ public class VocaListActivity extends AppCompatActivity {
 
             }
         });
+
+           searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setSuggestionsAdapter(searchAdapter);
 
     return super.onCreateOptionsMenu(menu);
     }

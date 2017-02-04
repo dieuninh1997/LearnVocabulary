@@ -103,6 +103,7 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
 
                     } else {
                         Toast.makeText(SettingsActivity.this, "The vocabulary list is empty!", Toast.LENGTH_SHORT).show();
+                        checkNotify = false;
                     }
                 }
                 else

@@ -6,6 +6,7 @@ import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.util.Log;
 import android.widget.LinearLayout;
+import android.widget.Toast;
 
 import com.wenchao.cardstack.CardStack;
 
@@ -24,7 +25,7 @@ public class TestActivity extends AppCompatActivity {
     private CardStack mCardStack;
     private CardsAdapter mCardAdapter;
     public static String [] arrayList;
-    public static LinearLayout frRoot;
+    public LinearLayout frRoot;
 
     //android.support.design.widget.FloatingActionButton fab;
     @Bind(R.id.rcv_vocabulary)
@@ -43,31 +44,30 @@ public class TestActivity extends AppCompatActivity {
         mCardStack = (CardStack)findViewById(R.id.container);
         frRoot = (LinearLayout) findViewById(R.id.frRoot);
         mCardStack.setContentResource(R.layout.card_content);
-//
         list = AppController.getInstance().getListVocabularies();
         SIZE=list.size();
-        Log.e("Loi ERR : SIZE=",SIZE+"");
+
         Collections.shuffle(list);
         mCardAdapter = new CardsAdapter(this, list);
         int i=0;
         mCardAdapter.add(String.valueOf(list.get(i)));
         mCardStack.setAdapter(mCardAdapter);
-
         mCardStack.setListener(new CardStack.CardEventListener() {
             @Override
             public boolean swipeEnd(int section, float distance) {
-//                finish();
-                if(mCardAdapter.chuyenCard)
+
+                if(CardsAdapter.chuyenCard)
                 {
                     dem++;
-                    Log.e("Loi ERR dem1=",dem+"");
+                    CardsAdapter.chuyenCard=false;
+//                    Toast.makeText(getApplicationContext(),"dem="+dem,Toast.LENGTH_SHORT).show();
                     if(dem==SIZE) {
                         rcvVocabulary.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                         rcvVocabulary.setHasFixedSize(true);
 
-
                         adapter = new VocabularyResultAdapter(getApplicationContext(), list);
                         rcvVocabulary.setAdapter(adapter);
+                        dem=0;
                     }
                     return true;
                 }
@@ -101,10 +101,6 @@ public class TestActivity extends AppCompatActivity {
 
             }
         });
-
-
-//        Log.e("Loi ERR dem2=",dem+"");
-
     }
      /*private void showDialogHelp() {
        dialog =  new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)

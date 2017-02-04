@@ -5,7 +5,7 @@
     android:id="@+id/card"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    card_view:cardBackgroundColor="@color/black"
+    card_view:cardBackgroundColor="@color/green"
     android:paddingBottom="60dp"
     android:paddingLeft="@dimen/activity_horizontal_margin"
     android:paddingRight="@dimen/activity_horizontal_margin"
@@ -30,7 +30,11 @@
             android:text="@string/NewWord"
             android:gravity="center_horizontal|center_vertical"
             android:background="@drawable/bg"
-            android:textSize="24sp" />
+            android:textSize="24sp"
+            android:textColor="@color/white"
+            android:fontFamily="monospace"
+            android:textStyle="bold"
+            />
 
         <RadioGroup
             android:id="@+id/rad_group"

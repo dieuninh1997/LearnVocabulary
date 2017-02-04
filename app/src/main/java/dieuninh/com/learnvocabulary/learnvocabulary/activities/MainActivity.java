@@ -10,16 +10,19 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import dieuninh.com.learnvocabulary.learnvocabulary.R;
 import dieuninh.com.learnvocabulary.learnvocabulary.application.AppController;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.DatabaseHandler;
+import dieuninh.com.learnvocabulary.learnvocabulary.models.MySharedPreference;
 
 public class MainActivity extends AppCompatActivity {
     CardView cv_start, cv_new, cv_storedList, cv_settings;
     DatabaseHandler db;
     TextView tv_stortedwords;
     static int num;
+    MySharedPreference mySharedPreference;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
@@ -40,9 +43,10 @@ public class MainActivity extends AppCompatActivity {
 
         chon();
 
+
         AppController.getInstance().setListVocabularies(db.getAllVocabulary());
         num = AppController.getInstance().getListVocabularies().size();
-        tv_stortedwords.setText(String.format("Stored %1$d  words", num));
+        tv_stortedwords.setText(String.format(String.valueOf(R.string.stored_number_words), num));
 
 
       /*  cv_start.setOutlineProvider(new ViewOutlineProvider() {
@@ -67,21 +71,23 @@ public class MainActivity extends AppCompatActivity {
         cv_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (db.checkForTables() == false) {
+                if (!db.checkForTables()) {
 
                     startActivity(new Intent(MainActivity.this, AddVocabularyActivity.class));
                 } else {
 
                     AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
                     b.setTitle("Confirm");
-                    b.setMessage("Do you really create a new vocabulary list? " +
-                            "If you choose YES ,all precious vocabulary will be removed.");
+                    b.setMessage("Do you really create a new vocabulary list? \n" +
+                            "If you choose YES , all precious vocabulary will be removed.");
                     b.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             db.deleteAllData();
+                            mySharedPreference.removeVocaList();
+//                                Toast.makeText(getApplicationContext(),"Xoa thanh cong",Toast.LENGTH_SHORT).show();
                             num = 0;
-                            tv_stortedwords.setText(String.format("Stored %1$d  words", num));
+                            tv_stortedwords.setText(String.format(String.valueOf(R.string.stored_number_words), num));
                             Intent intent = new Intent(MainActivity.this, AddVocabularyActivity.class);
                             startActivity(intent);
                         }
@@ -100,7 +106,7 @@ public class MainActivity extends AppCompatActivity {
         cv_start.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (db.checkForTables() == false) {
+                if (!db.checkForTables()) {
                     startActivity(new Intent(MainActivity.this, AddVocabularyActivity.class));
                 } else//ko rỗng: True
                 {
@@ -135,7 +141,7 @@ public class MainActivity extends AppCompatActivity {
         Intent callerIntent = getIntent();
         Bundle bundleFromCaller = callerIntent.getBundleExtra("MyIntent");
         num = bundleFromCaller.getInt("number");
-        tv_stortedwords.setText(String.format("Stored %1$d  words", num));
+        tv_stortedwords.setText(String.format(String.valueOf(R.string.stored_number_words), num));
     }
 
     private void anhXa() {
@@ -146,6 +152,7 @@ public class MainActivity extends AppCompatActivity {
         cv_settings = (CardView) findViewById(R.id.cv_settings);
         tv_stortedwords = (TextView) findViewById(R.id.tv_storedwords);
         db = new DatabaseHandler(this);
+        mySharedPreference=new MySharedPreference(getApplicationContext());
     }
 
     @Override

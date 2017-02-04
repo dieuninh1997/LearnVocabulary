@@ -5,8 +5,12 @@ import android.content.Context;
 import android.content.Intent;
 import android.database.Cursor;
 import android.graphics.PixelFormat;
+import android.net.Uri;
+import android.os.Build;
 import android.os.IBinder;
 import android.os.Vibrator;
+import android.provider.Settings;
+import android.support.annotation.RequiresApi;
 import android.view.Gravity;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -54,16 +58,22 @@ public class LockScreenService extends Service {
     @Override
     public void onCreate() {
         super.onCreate();
+    }
 
+    @Override
+    public int onStartCommand(Intent intent, int flags, int startId) {
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT,
-                WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
-                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
-                PixelFormat.TRANSLUCENT
+                WindowManager.LayoutParams.TYPE_TOAST,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE|WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED
+                        | WindowManager.LayoutParams.FLAG_DISMISS_KEYGUARD
+                        | WindowManager.LayoutParams.FLAG_TURN_SCREEN_ON,
+                PixelFormat.RGBA_8888
+              //  PixelFormat.TRANSLUCENT
         );
-
+//  WindowManager.LayoutParams.TYPE_SYSTEM_ALERT,
         //WindowManager.LayoutParams.TYPE_TOAST
         params.x = 0;
         params.y = 0;
@@ -71,6 +81,7 @@ public class LockScreenService extends Service {
         LayoutInflater li = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         final RelativeLayout theme = (RelativeLayout) li.inflate(R.layout.vo_lockscreen, null);
         windowManager.addView(theme, params);
+
 
 
         Random random ;//= new Random();
@@ -232,9 +243,12 @@ public class LockScreenService extends Service {
             four.setText(nghia[nghiaIndex[3]]);
         }
 
+
+        return START_STICKY;
     }
 
-    //
+
+    //------------
 
     int rdNumber(int n1,int n2, int n3, int size)
     {

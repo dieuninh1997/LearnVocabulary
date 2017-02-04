@@ -1,20 +1,17 @@
 package dieuninh.com.learnvocabulary.learnvocabulary.models;
 
-/**
- * Created by DieuLinh on 12/30/2016.
- */
-
 public class Vocabulary {
-    String newWord; // tu moi
-    String meaning;// nghia
-    int id;
+    private String newWord; // tu moi
+    private String meaning;// nghia
+    private int id;
 
     public Vocabulary() {
     }
 
-    public Vocabulary(int i){
-        id= i;
+    public Vocabulary(int i) {
+        id = i;
     }
+
     public int getId() {
         return id;
     }
