@@ -5,6 +5,7 @@ import android.support.v7.widget.RecyclerView;
 import android.text.Editable;
 import android.text.TextWatcher;
 import android.view.LayoutInflater;
+import android.view.MotionEvent;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.EditText;
@@ -70,6 +71,11 @@ public class VocabularyAdapter extends RecyclerView.Adapter<VocabularyAdapter.Vo
             edtNewWord = (EditText) itemView.findViewById(R.id.edt_newword);
             tvNewWord = (TextView) itemView.findViewById(R.id.tv_newword);
 //            final Vocabulary vocabulary =  ;
+//           edtNewWord.setFocusableInTouchMode(true);
+//           edtMean.setFocusableInTouchMode(true);
+            edtMean.requestFocus();
+            edtNewWord.requestFocus();
+
             edtNewWord.addTextChangedListener(new TextWatcher() {
                 @Override
                 public void beforeTextChanged(CharSequence s, int start, int count, int after) {

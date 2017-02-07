@@ -8,4 +8,5 @@
     <string name="search">search</string>
     <string name="text_of_number_words">Empty List : 0 word(s)</string>
     <string name="stored_number_words">Stored %1$d  words</string>
+    <string name="empty_vo">\"The vocabulary list is empty!\"</string>
 </resources>

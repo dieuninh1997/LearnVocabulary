@@ -5,12 +5,15 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
+
 import java.util.List;
 import java.util.Random;
 
 import br.com.goncalves.pugnotification.notification.Load;
 import br.com.goncalves.pugnotification.notification.PugNotification;
 import dieuninh.com.learnvocabulary.learnvocabulary.R;
+import dieuninh.com.learnvocabulary.learnvocabulary.activities.MainActivity;
 import dieuninh.com.learnvocabulary.learnvocabulary.activities.VocaListActivity;
 import dieuninh.com.learnvocabulary.learnvocabulary.application.AppController;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
@@ -20,6 +23,7 @@ import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
 public class AlertReceiver extends BroadcastReceiver {
     int numOfList = 0;
     List<Vocabulary> list;
+
     @Override
     public void onReceive(Context context, Intent intent) {
 
@@ -32,13 +36,20 @@ public class AlertReceiver extends BroadcastReceiver {
         String nghia = getTu(num, 2);
 
 
-        Intent repeatingIntent= new Intent(context,VocaListActivity.class);
+        Intent repeatingIntent= new Intent(context, MainActivity.class);
+        repeatingIntent.putExtra("code","1");
+
+        repeatingIntent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK|Intent.FLAG_ACTIVITY_CLEAR_TASK);
+
+
+
+
         repeatingIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TOP);
-        PendingIntent notifiIntent=PendingIntent.getActivity(context,0,
-             repeatingIntent  ,PendingIntent.FLAG_UPDATE_CURRENT);
+        PendingIntent notifiIntent=PendingIntent.getActivity(
+                context,0,repeatingIntent,PendingIntent.FLAG_UPDATE_CURRENT);
         Load mLoad = PugNotification.with(context).load()
                 .smallIcon(R.drawable.ic_launcher)
-                .autoCancel(true)
+                .autoCancel(false)
                 .largeIcon(R.drawable.logo_lv)
                 .title(tuMoi)
                 .message(nghia)
@@ -46,6 +57,7 @@ public class AlertReceiver extends BroadcastReceiver {
                 .onlyAlertOnce(true)
                 .ongoing(true)
                 .click(notifiIntent);
+        //mLoad.flags(Notification.FLAG_AUTO_CANCEL);
         mLoad.simple().build();
       /*  NotificationCompat.Builder mBuilder=new NotificationCompat.Builder(context)
                 .setSmallIcon(R.drawable.logo_lv)

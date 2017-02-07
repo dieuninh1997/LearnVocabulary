@@ -17,7 +17,7 @@ public class VoReceiver extends BroadcastReceiver {
         if(action.equals(Intent.ACTION_SCREEN_OFF)||action.equals(Intent.ACTION_BOOT_COMPLETED))
         {
 
-            Log.i("[BroadcastReceiver]", "Screen OFF");
+//            Log.i("[BroadcastReceiver]", "Screen OFF");
              Intent displayIntent=new Intent(context,LockScreenService.class);
                 context.startService(displayIntent);
 

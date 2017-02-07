@@ -37,16 +37,12 @@ public class MainActivity extends AppCompatActivity {
 //            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE);
 //        }
         setContentView(R.layout.activity_main);
-
+        clickNotification();
         anhXa();
-
-
         chon();
-
-
         AppController.getInstance().setListVocabularies(db.getAllVocabulary());
         num = AppController.getInstance().getListVocabularies().size();
-        tv_stortedwords.setText(String.format("Stored %1$d  words", num));
+        tv_stortedwords.setText(String.format(getString(R.string.stored_number_words), num));
 
 
       /*  cv_start.setOutlineProvider(new ViewOutlineProvider() {
@@ -64,6 +60,21 @@ public class MainActivity extends AppCompatActivity {
             }
         });*/
 
+
+    }
+
+    public void clickNotification() {
+        Intent intent = getIntent();
+//        Toast.makeText(getApplicationContext(),intent.getStringExtra("code")+"",Toast.LENGTH_SHORT).show();
+        if (intent.getStringExtra("code") != null) {
+            int code = Integer.parseInt(intent.getStringExtra("code"));
+//                Integer.parseInt(intent.getStringExtra("code"));
+            if (code == 1) {
+                startActivity(new Intent(getApplicationContext(), VocaListActivity.class));
+            }
+
+        }
+
     }
 
 
@@ -78,7 +89,7 @@ public class MainActivity extends AppCompatActivity {
 
                     AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
                     b.setTitle("Confirm");
-                    b.setMessage("Do you really create a new vocabulary list? \n" +
+                    b.setMessage("\nCreate a new vocabulary list? \n\n" +
                             "If you choose YES , all precious vocabulary will be removed.");
                     b.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
@@ -87,7 +98,7 @@ public class MainActivity extends AppCompatActivity {
                             mySharedPreference.removeVocaList();
 //                                Toast.makeText(getApplicationContext(),"Xoa thanh cong",Toast.LENGTH_SHORT).show();
                             num = 0;
-                            tv_stortedwords.setText(String.format("Stored %1$d  words", num));
+                            tv_stortedwords.setText(String.format(getString(R.string.stored_number_words), num));
                             Intent intent = new Intent(MainActivity.this, AddVocabularyActivity.class);
                             startActivity(intent);
                         }
@@ -141,7 +152,7 @@ public class MainActivity extends AppCompatActivity {
         Intent callerIntent = getIntent();
         Bundle bundleFromCaller = callerIntent.getBundleExtra("MyIntent");
         num = bundleFromCaller.getInt("number");
-        tv_stortedwords.setText(String.format("Stored %1$d  words", num));
+        tv_stortedwords.setText(String.format(getString(R.string.stored_number_words), num));
     }
 
     private void anhXa() {
@@ -152,7 +163,7 @@ public class MainActivity extends AppCompatActivity {
         cv_settings = (CardView) findViewById(R.id.cv_settings);
         tv_stortedwords = (TextView) findViewById(R.id.tv_storedwords);
         db = new DatabaseHandler(this);
-        mySharedPreference=new MySharedPreference(getApplicationContext());
+        mySharedPreference = new MySharedPreference(getApplicationContext());
     }
 
     @Override

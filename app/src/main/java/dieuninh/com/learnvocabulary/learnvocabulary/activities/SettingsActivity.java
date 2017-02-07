@@ -32,36 +32,34 @@ import dieuninh.com.learnvocabulary.learnvocabulary.services.VoService;
 
 public class SettingsActivity extends AppCompatActivity implements ImageLoader {
     Switch swich1, swich2;
-    SharedPreferences.Editor editor;
 
     DatabaseHandler myDBHandler;
     private Context mContext;
     List<Vocabulary> list;
     int numOfList = 0;
-    static boolean checkNotify=false ;
+//    static boolean checkNotify=false ;
     private Target viewTarget;
     PendingIntent pendingIntent;
+    private static final String PREF_LOCK_NAME="sharedPrefLock";
+    private static final String PREF_NOTIFY_NAME="sharedPrefNotify";
+    private static final String LOCK="lock";
+    private static final String NOTIFY="notify";
+    SharedPreferences sharedPref_lock,sharedPref_notify;
+    SharedPreferences.Editor editor_lock,editor_notify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-
-        //set fullscreen
-        //View.SYSTEM_UI_FLAG_IMMERSIVE is only on API 19+
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        if (Build.VERSION.SDK_INT < 19) {
-//            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-//
-//        } else {
-//            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE);
-//        }
-        //Thay doi o day
         mContext = this;
         setContentView(R.layout.activity_settings);
 
+        sharedPref_lock=getApplicationContext().getSharedPreferences(PREF_LOCK_NAME,Context.MODE_PRIVATE);
+        editor_lock=sharedPref_lock.edit();
 
-        editor = getSharedPreferences("user_info", MODE_PRIVATE).edit();
+        sharedPref_notify=getApplicationContext().getSharedPreferences(PREF_NOTIFY_NAME,Context.MODE_PRIVATE);
+        editor_notify=sharedPref_notify.edit();
+
+
         myDBHandler = new DatabaseHandler(SettingsActivity.this);
 
         list = AppController.getInstance().getListVocabularies();
@@ -99,18 +97,21 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
                         alarmManager.cancel(pendingIntent);
 //                      alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alertTime,pendingIntent);
                         alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 2*60*1000, pendingIntent);//-> next từ mới
-                        checkNotify = true;
+//                        checkNotify = true;
+                        editor_notify.putBoolean(NOTIFY,true).commit();
 
                     } else {
-                        Toast.makeText(SettingsActivity.this, "The vocabulary list is empty!", Toast.LENGTH_SHORT).show();
-                        checkNotify = false;
+                        Toast.makeText(SettingsActivity.this,R.string.empty_vo, Toast.LENGTH_SHORT).show();
+//                        checkNotify = false;
+                        editor_notify.putBoolean(NOTIFY,false).commit();
                     }
                 }
                 else
                 {
                     Intent alertIntent = new Intent(SettingsActivity.this, AlertReceiver.class);
                     pendingIntent = PendingIntent.getBroadcast(SettingsActivity.this, 0, alertIntent, 0);
-                    checkNotify = false;
+//                    checkNotify = false;
+                    editor_notify.putBoolean(NOTIFY,false).commit();
                     AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                     manager.cancel(pendingIntent);
                     NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
@@ -118,11 +119,15 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
                 }
             }
         });
-        Log.e("CHECK=", checkNotify + "");
-        swich2.setChecked(checkNotify);
-
+//        Log.e("CHECK=", checkNotify + "");
+        swich2.setChecked(getCheckedOfNotify());
+//        Toast.makeText(getApplicationContext(),getCheckedOfNotify()+"",Toast.LENGTH_SHORT).show();
     }
-/*
+
+    private Boolean getCheckedOfNotify() {
+        return sharedPref_notify.getBoolean(NOTIFY,false);
+    }
+    /*
     public void createNotification1() {
         Random random = new Random();
         int num = random.nextInt(numOfList);

@@ -2,7 +2,7 @@ package dieuninh.com.learnvocabulary.learnvocabulary.adapters;
 
 import android.app.Activity;
 import android.graphics.Color;
-import android.support.annotation.NonNull;
+import android.media.MediaPlayer;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -45,9 +45,8 @@ public class CardsAdapter extends ArrayAdapter<String>  {
     }
 
     @Override
-    @NonNull
     public View getView(int position, final View contentView, ViewGroup parent) {
-
+        final MediaPlayer sound_click=MediaPlayer.create(getContext(),R.raw.sound_click);
         v = (TextView) (contentView.findViewById(R.id.tv_newword));
         cv = (CardView) (contentView.findViewById(R.id.card));
        radioGroup = (RadioGroup) contentView.findViewById(R.id.rad_group);
@@ -103,7 +102,9 @@ public class CardsAdapter extends ArrayAdapter<String>  {
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
                 for(int i=0;i<radioGroup.getChildCount();i++) {
                     RadioButton btn = (RadioButton) radioGroup.getChildAt(i);
+//                    int t = radioGroup.getId();
                     if (btn.getId() == checkedId) {
+                        sound_click.start();
                         if (btn.getId() == posTrue) {
                             chuyenCard = true;
 //                            Toast.makeText(getContext(), "chuyencard =true, change", Toast.LENGTH_SHORT).show();

@@ -1,6 +1,9 @@
 package dieuninh.com.learnvocabulary.learnvocabulary.activities;
 
+import android.content.Context;
+import android.media.MediaPlayer;
 import android.os.Bundle;
+import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
@@ -46,6 +49,8 @@ public class TestActivity extends AppCompatActivity {
         mCardStack.setContentResource(R.layout.card_content);
         list = AppController.getInstance().getListVocabularies();
         SIZE=list.size();
+        final MediaPlayer sound_correct=MediaPlayer.create(getApplicationContext(),R.raw.sound_correct);
+        final MediaPlayer sound_wrong=MediaPlayer.create(getApplicationContext(),R.raw.sound_wrong);
 
         Collections.shuffle(list);
         mCardAdapter = new CardsAdapter(this, list);
@@ -58,6 +63,7 @@ public class TestActivity extends AppCompatActivity {
 
                 if(CardsAdapter.chuyenCard)
                 {
+                    sound_correct.start();
                     dem++;
                     CardsAdapter.chuyenCard=false;
 //                    Toast.makeText(getApplicationContext(),"dem="+dem,Toast.LENGTH_SHORT).show();
@@ -73,6 +79,9 @@ public class TestActivity extends AppCompatActivity {
                 }
                 else
                 {
+                    sound_wrong.start();
+                    Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
+                    vib.vibrate(300);
                     return false;
                 }
             }

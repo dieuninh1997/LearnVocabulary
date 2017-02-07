@@ -10,9 +10,9 @@
     tools:context="dieuninh.com.learnvocabulary.learnvocabulary.activities.TestActivity">
 <!--
     <include layout="@layout/toolbar_with_title" />-->
-<!--<RelativeLayout
+<RelativeLayout
     android:layout_width="match_parent"
-    android:layout_height="match_parent">-->
+    android:layout_height="match_parent">
     <android.support.v7.widget.RecyclerView
         android:id="@+id/rcv_vocabulary"
         android:layout_width="match_parent"
@@ -57,7 +57,7 @@
         >
 
     </com.wenchao.cardstack.CardStack>
-<!--</RelativeLayout>-->
+</RelativeLayout>
 
 
 </LinearLayout>

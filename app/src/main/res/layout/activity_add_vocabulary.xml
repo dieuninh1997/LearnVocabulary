@@ -23,7 +23,7 @@
         android:layout_alignParentRight="true"
         android:onClick="onClick"
         android:layout_width="wrap_content"
-        android:layout_height="wrap_content"
+        android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
         fab:menu_fab_size="normal"
@@ -69,19 +69,19 @@
             android:layout_above="@+id/fab_save"
             android:layout_alignParentRight="true"
             android:onClick="onClick"
-            fab:fab_label="more"
+            fab:fab_label="More"
             android:src="@drawable/ic_add_white_24dp"
             app:fab_colorNormal="@color/colorAccent"
             app:fab_colorPressed="@color/red_btn_bg_pressed_color"
             app:fab_elevationCompat="3dp"
             app:fab_progress_color="@color/red_btn_bg_color"
             app:fab_shadowColor="@color/red_btn_bg_color"
-            app:fab_size="mini"
+            fab:fab_size="mini"
             />
 
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_save"
-            fab:fab_label="save"
+            fab:fab_label="Save"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_alignParentBottom="true"
@@ -93,11 +93,11 @@
             app:fab_elevationCompat="3dp"
             app:fab_progress_color="@color/red_btn_bg_color"
             app:fab_shadowColor="@color/red_btn_bg_color"
-            app:fab_size="mini"
+            fab:fab_size="mini"
             />
         <com.github.clans.fab.FloatingActionButton
             android:id="@+id/fab_eraser"
-            fab:fab_label="eraser all"
+            fab:fab_label="Eraser all"
             android:layout_above="@+id/fab_more"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
@@ -110,8 +110,8 @@
             app:fab_colorPressed="@color/red_btn_bg_pressed_color"
             app:fab_progress_color="@color/red_btn_bg_color"
             app:fab_shadowColor="@color/red_btn_bg_color"
-            app:fab_size="mini"
             app:fab_elevationCompat="3dp"
+            fab:fab_size="mini"
             />
     </com.github.clans.fab.FloatingActionMenu>
     </RelativeLayout>
