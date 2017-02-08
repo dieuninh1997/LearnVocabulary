@@ -1,5 +1,6 @@
 package dieuninh.com.learnvocabulary.learnvocabulary.utils;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.content.ActivityNotFoundException;
 import android.content.Context;
@@ -13,6 +14,7 @@ import android.telephony.TelephonyManager;
 import android.util.Base64;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.WindowManager;
 import android.view.inputmethod.InputMethodManager;
 import android.widget.EditText;
 import android.widget.Toast;
@@ -95,6 +97,10 @@ public class CommonUtils {
         AlertDialog dialog = builder.create();
         dialog.show();
         return dialog;
+    }
+    public static void hideKeyBoard(Activity context) {
+        context.getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
     }
     public static void hideKeyBroad(Context context, EditText mEdt) {
 

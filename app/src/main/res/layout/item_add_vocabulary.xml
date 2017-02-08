@@ -58,6 +58,7 @@
                 android:layout_height="wrap_content"
                 android:layout_weight="1"
                 android:paddingLeft="@dimen/margin_medium"
+                android:focusable="false"
                 android:textColorHint="@color/colorAccent">
 
                 <EditText
@@ -65,11 +66,13 @@
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:fontFamily="nomal"
-                    android:hint="Mean"
+                    android:hint="@string/mean"
                     android:singleLine="true"
+
                     android:textSize="14sp"
                     android:textColor="@color/navi"
                     android:textColorHint="@color/colorAccent" />
+                <requestFocus/>
             </android.support.design.widget.TextInputLayout>
         </LinearLayout>
     </LinearLayout>

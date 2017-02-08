@@ -1,37 +1,28 @@
 package dieuninh.com.learnvocabulary.learnvocabulary.activities;
 
-import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.preference.PreferenceManager;
-import android.support.v4.app.NavUtils;
-import android.support.v4.app.TaskStackBuilder;
-import android.support.v7.app.ActionBar;
-import android.support.v7.app.ActionBarActivity;
-import android.support.v7.app.AppCompatActivity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.support.v7.widget.Toolbar;
 import android.view.MenuItem;
 import android.view.View;
+import android.view.WindowManager;
 import android.widget.Toast;
 
 import com.github.clans.fab.FloatingActionButton;
+import com.github.clans.fab.FloatingActionMenu;
 import com.google.gson.Gson;
 import com.google.gson.reflect.TypeToken;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
-import java.util.HashSet;
 import java.util.List;
-import java.util.Set;
 
 import butterknife.Bind;
 import butterknife.ButterKnife;
 import dieuninh.com.learnvocabulary.learnvocabulary.R;
 import dieuninh.com.learnvocabulary.learnvocabulary.adapters.VocabularyAdapter;
-import dieuninh.com.learnvocabulary.learnvocabulary.adapters.VocabularyResultAdapter;
 import dieuninh.com.learnvocabulary.learnvocabulary.application.AppController;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.DatabaseHandler;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.MySharedPreference;
@@ -46,7 +37,8 @@ public class AddVocabularyActivity extends AppCompatActivity implements View.OnC
     static int err;
     @Bind(R.id.fab_save)
     FloatingActionButton fabSave;
-
+    @Bind(R.id.fa_menu)
+    FloatingActionMenu menu;
     String tuMoi, nghia;
     int id;
     List<Vocabulary> listVo;
@@ -68,11 +60,16 @@ public class AddVocabularyActivity extends AppCompatActivity implements View.OnC
         list=getVocaListFromSharedPreference();
         adapter = new VocabularyAdapter(this, list);
         rcvVocabulary.setAdapter(adapter);
+        menu.close(false);
+
+        menu.setClosedOnTouchOutside(true);
+
 
         if (getSupportActionBar() != null) {
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
     }
 
     @Override

@@ -21,8 +21,9 @@
         android:id="@+id/fa_menu"
         android:layout_alignParentBottom="true"
         android:layout_alignParentRight="true"
+
         android:onClick="onClick"
-        android:layout_width="wrap_content"
+        android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:layout_marginBottom="10dp"
         android:layout_marginLeft="10dp"
@@ -45,6 +46,7 @@
         fab:menu_labels_paddingRight="8dp"
         fab:menu_labels_paddingBottom="4dp"
         fab:menu_labels_paddingLeft="8dp"
+
         fab:menu_labels_padding="8dp"
         fab:menu_labels_textColor="#FFFFFF"
         fab:menu_labels_textSize="14sp"
@@ -58,7 +60,7 @@
         fab:menu_labels_maxLines="-1"
         fab:menu_labels_position="left"
         fab:menu_openDirection="up"
-        fab:menu_backgroundColor="@android:color/transparent"
+        fab:menu_backgroundColor="#9efcf7f7"
         >
 
 

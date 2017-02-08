@@ -7,9 +7,8 @@ import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
-import android.util.Log;
+import android.view.WindowManager;
 import android.widget.LinearLayout;
-import android.widget.Toast;
 
 import com.wenchao.cardstack.CardStack;
 
@@ -110,6 +109,8 @@ public class TestActivity extends AppCompatActivity {
 
             }
         });
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
     }
      /*private void showDialogHelp() {
        dialog =  new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
