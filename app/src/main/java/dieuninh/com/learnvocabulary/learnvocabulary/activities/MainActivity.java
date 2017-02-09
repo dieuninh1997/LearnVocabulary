@@ -1,5 +1,7 @@
 package dieuninh.com.learnvocabulary.learnvocabulary.activities;
 
+import android.app.NotificationManager;
+import android.content.Context;
 import android.content.DialogInterface;
 import android.content.Intent;
 import android.os.Build;
@@ -28,14 +30,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-//        this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
-//                WindowManager.LayoutParams.FLAG_FULLSCREEN);
-//        if (Build.VERSION.SDK_INT < 19) {
-//            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION);
-//
-//        } else {
-//            this.getWindow().getDecorView().setSystemUiVisibility(View.SYSTEM_UI_FLAG_HIDE_NAVIGATION | View.SYSTEM_UI_FLAG_IMMERSIVE);
-//        }
+
         setContentView(R.layout.activity_main);
         clickNotification();
         anhXa();
@@ -68,17 +63,14 @@ public class MainActivity extends AppCompatActivity {
 //        Toast.makeText(getApplicationContext(),intent.getStringExtra("code")+"",Toast.LENGTH_SHORT).show();
         if (intent.getStringExtra("code") != null) {
             int code = Integer.parseInt(intent.getStringExtra("code"));
-//                Integer.parseInt(intent.getStringExtra("code"));
             if (code == 1) {
                 startActivity(new Intent(getApplicationContext(), VocaListActivity.class));
             }
-
         }
-
     }
 
-
     private void chon() {
+
         cv_new.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -86,17 +78,23 @@ public class MainActivity extends AppCompatActivity {
 
                     startActivity(new Intent(MainActivity.this, AddVocabularyActivity.class));
                 } else {
-
                     AlertDialog.Builder b = new AlertDialog.Builder(MainActivity.this);
                     b.setTitle("Confirm");
-                    b.setMessage("\nCreate a new vocabulary list? \n\n" +
-                            "If you choose YES , all precious vocabulary will be removed.");
+//                    b.setIcon(R.drawable.logo_lv);
+                    b.setMessage(getString(R.string.thong_bao_confirm_message));
                     b.setPositiveButton("YES", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
                             db.deleteAllData();
                             mySharedPreference.removeVocaList();
-//                                Toast.makeText(getApplicationContext(),"Xoa thanh cong",Toast.LENGTH_SHORT).show();
+                            NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                            notificationManager.cancelAll();
+/*
+* sau khi tạo list từ mới thì phải cập nhật lại stored words ở List Activity
+* và phải tắt notification nữa.
+*
+* */
+//                          Toast.makeText(getApplicationContext(),"Xoa thanh cong",Toast.LENGTH_SHORT).show();
                             num = 0;
                             tv_stortedwords.setText(String.format(getString(R.string.stored_number_words), num));
                             Intent intent = new Intent(MainActivity.this, AddVocabularyActivity.class);
@@ -106,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     b.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-
+                            Toast.makeText(getApplicationContext(),"No lan xx",Toast.LENGTH_SHORT).show();
                             dialogInterface.cancel();
                         }
                     });

@@ -31,10 +31,6 @@ import java.util.TimeZone;
 
 import dieuninh.com.learnvocabulary.learnvocabulary.R;
 
-/**
- * Created by DieuLinh on 12/31/2016.
- */
-
 public class CommonUtils {
     public static void disable(ViewGroup layout) {
         layout.setEnabled(false);
@@ -65,7 +61,7 @@ public class CommonUtils {
         try {
             context.startActivity(myAppLinkToMarket);
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(context, " unable to find market app", Toast.LENGTH_LONG).show();
+            Toast.makeText(context,context.getString(R.string.unable_find_market_app), Toast.LENGTH_LONG).show();
         }
     }
     public static void launchMoreAppMarket(Context context) {
@@ -74,7 +70,7 @@ public class CommonUtils {
         try {
             context.startActivity(myAppLinkToMarket);
         } catch (ActivityNotFoundException e) {
-            Toast.makeText(context, " unable to find market app", Toast.LENGTH_LONG).show();
+            Toast.makeText(context, context.getString(R.string.unable_find_market_app), Toast.LENGTH_LONG).show();
         }
     }
     public static void shareEmail(String email, Context context){
@@ -82,7 +78,8 @@ public class CommonUtils {
                 "mailto",email, null));
         emailIntent.putExtra(Intent.EXTRA_SUBJECT, context.getResources().getString(R.string.app_name));
         emailIntent.putExtra(Intent.EXTRA_TEXT, "");
-        context.startActivity(Intent.createChooser(emailIntent, "Send email..."));
+        context.startActivity(Intent.createChooser(emailIntent,context.getString(R.string.send_email)));
+
     }
     public static AlertDialog showDialog(Context context, String name, String msg) {
         AlertDialog.Builder builder = new AlertDialog.Builder(context);

@@ -185,7 +185,6 @@ public class LockScreenService extends Service {
         });
 
         //nếu databse có dữ liệu thì lấy ra dùng thôi. còn nếu ko có thì ta sẽ dùng 1 số từ mới mặc định nha
-
         //tạo ngẫu nhiên 1 từ mới
 
         if (SIZE > 0) {
@@ -216,7 +215,7 @@ public class LockScreenService extends Service {
             three.setText(getStringDB(nghiaIndex[2], 2));
             four.setText(getStringDB(nghiaIndex[3], 2));
         }
-        else
+     /*   else
         {
             random = new Random();
             tuIndex = random.nextInt(SIZE_OF_VOCA);
@@ -244,7 +243,7 @@ public class LockScreenService extends Service {
             two.setText(nghia[nghiaIndex[1]]);
             three.setText(nghia[nghiaIndex[2]]);
             four.setText(nghia[nghiaIndex[3]]);
-        }
+        }*/
 
 
         return START_STICKY;

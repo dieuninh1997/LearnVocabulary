@@ -69,7 +69,7 @@ public class AddVocabularyActivity extends AppCompatActivity implements View.OnC
             getSupportActionBar().setDisplayHomeAsUpEnabled(true);
             getSupportActionBar().setDisplayShowHomeEnabled(true);
         }
-        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);//cái này fix focus edittext
     }
 
     @Override
@@ -123,7 +123,7 @@ public class AddVocabularyActivity extends AppCompatActivity implements View.OnC
                     startActivity(myIntent);
                     //
                     if (number > 0) {
-                        Toast.makeText(this, "Please remember Vocabulary to ready to contest", Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this,getString(R.string.remember_to_test), Toast.LENGTH_SHORT).show();
                     }
                     AppController.getInstance().setListVocabularies(db.getAllVocabulary());
 
