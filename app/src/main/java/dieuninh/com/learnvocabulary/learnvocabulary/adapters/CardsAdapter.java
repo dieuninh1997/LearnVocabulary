@@ -1,6 +1,7 @@
 package dieuninh.com.learnvocabulary.learnvocabulary.adapters;
 
 import android.app.Activity;
+import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
@@ -15,6 +16,7 @@ import android.widget.RadioGroup;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import java.io.IOException;
 import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
@@ -33,7 +35,6 @@ public class CardsAdapter extends ArrayAdapter<String> {
     private List<Vocabulary> list;
     public static boolean chuyenCard;//chuyển card
     private RadioGroup radioGroup;
-    MediaPlayer sound_click;
 
     public CardsAdapter(Activity context, List<Vocabulary> list) {
         super(context, R.layout.card_content);
@@ -58,10 +59,15 @@ public class CardsAdapter extends ArrayAdapter<String> {
         v = (TextView) (contentView.findViewById(R.id.tv_newword));
         cv = (CardView) (contentView.findViewById(R.id.card));
         radioGroup = (RadioGroup) contentView.findViewById(R.id.rad_group);
+
+        final MediaPlayer sound_click=new MediaPlayer();
+
+
          /*RadioButton radioButton1= (RadioButton) radioGroup.findViewById(R.id.rad_ans_a);
         RadioButton radioButton2= (RadioButton) radioGroup.findViewById(R.id.rad_ans_b);
         RadioButton radioButton3= (RadioButton) radioGroup.findViewById(R.id.rad_ans_c);
         RadioButton radioButton4= (RadioButton) radioGroup.findViewById(R.id.rad_ans_d);*/
+
         Vocabulary vocabularyTrue = list.get(position);
         v.setText(vocabularyTrue.getNewWord());
         int list_size = getCount();
@@ -113,18 +119,33 @@ public class CardsAdapter extends ArrayAdapter<String> {
 //                    int t = radioGroup.getId();
 //                    sp.play(soundId,1,1,0,0,1);
                     if (btn.getId() == checkedId) {
-                        sound_click= MediaPlayer.create(getContext(), R.raw.sound_click);
-                        sound_click.setAudioStreamType(AudioManager.STREAM_MUSIC);
+                        if(sound_click.isPlaying())
+                        {
+                            sound_click.stop();
+                        }
+
+//                        sound_click= MediaPlayer.create(getContext(), R.raw.sound_click);
+//                        sound_click.setAudioStreamType(AudioManager.STREAM_MUSIC);
 //                        sound_click.setLooping(true);
-                        sound_click.start();//lỗi
+//                        sound_click.start();//lỗi
 
+                        try {
+                            sound_click.reset();
+                            AssetFileDescriptor afd;
+                            afd=getContext().getAssets().openFd("sound_click.mp3");
+                            sound_click.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                            sound_click.prepare();
+                            sound_click.start();
 
+                        } catch (Exception e) {
+                            e.printStackTrace();
+                        }
                         if (btn.getId() == posTrue) {
                             chuyenCard = true;
-                            Toast.makeText(getContext(), "chuyencard =true, change", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getContext(), "chuyencard =true, change", Toast.LENGTH_SHORT).show();
                         } else {
                             chuyenCard = false;
-                            Toast.makeText(getContext(), "chuyencard =false, change", Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getContext(), "chuyencard =false, change", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

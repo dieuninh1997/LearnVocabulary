@@ -66,7 +66,7 @@ public class TestActivity extends AppCompatActivity {
                     sound_correct.start();
                     dem++;
                     CardsAdapter.chuyenCard=false;
-                    Toast.makeText(getApplicationContext(),"dem="+dem, Toast.LENGTH_SHORT).show();
+//                    Toast.makeText(getApplicationContext(),"dem="+dem, Toast.LENGTH_SHORT).show();
                     if(dem==SIZE) {
                         rcvVocabulary.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                         rcvVocabulary.setHasFixedSize(true);
