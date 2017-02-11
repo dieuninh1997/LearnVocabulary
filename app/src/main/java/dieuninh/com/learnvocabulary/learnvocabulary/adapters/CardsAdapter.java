@@ -2,7 +2,9 @@ package dieuninh.com.learnvocabulary.learnvocabulary.adapters;
 
 import android.app.Activity;
 import android.graphics.Color;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
@@ -23,14 +25,15 @@ import dieuninh.com.learnvocabulary.learnvocabulary.activities.TestActivity;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
 
 
-public class CardsAdapter extends ArrayAdapter<String>  {
+public class CardsAdapter extends ArrayAdapter<String> {
     public static String TAG = CardsAdapter.class.getSimpleName().toUpperCase();
-  private   Activity activity;
+    private Activity activity;
     private CardView cv;
     private TextView v;
-   private List<Vocabulary> list;
+    private List<Vocabulary> list;
     public static boolean chuyenCard;//chuyển card
     private RadioGroup radioGroup;
+    MediaPlayer sound_click;
 
     public CardsAdapter(Activity context, List<Vocabulary> list) {
         super(context, R.layout.card_content);
@@ -46,10 +49,15 @@ public class CardsAdapter extends ArrayAdapter<String>  {
 
     @Override
     public View getView(int position, final View contentView, ViewGroup parent) {
-        final MediaPlayer sound_click=MediaPlayer.create(getContext(),R.raw.sound_click);
+
+
+//        final SoundPool sp=new SoundPool(5, AudioManager.STREAM_MUSIC,0);
+//        final int soundId=sp.load(getContext(),R.raw.sound_click,1);
+
+
         v = (TextView) (contentView.findViewById(R.id.tv_newword));
         cv = (CardView) (contentView.findViewById(R.id.card));
-       radioGroup = (RadioGroup) contentView.findViewById(R.id.rad_group);
+        radioGroup = (RadioGroup) contentView.findViewById(R.id.rad_group);
          /*RadioButton radioButton1= (RadioButton) radioGroup.findViewById(R.id.rad_ans_a);
         RadioButton radioButton2= (RadioButton) radioGroup.findViewById(R.id.rad_ans_b);
         RadioButton radioButton3= (RadioButton) radioGroup.findViewById(R.id.rad_ans_c);
@@ -78,7 +86,7 @@ public class CardsAdapter extends ArrayAdapter<String>  {
         } while (posAnsFalse3 == posAnsFalse2 || posAnsFalse3 == posAnsFalse1 || ktra);
 
         String[] ansFalse = {list.get(posAnsFalse1).getMeaning(), list.get(posAnsFalse2).getMeaning(), list.get(posAnsFalse3).getMeaning()};
-        final int posTrue= new Random().nextInt(3);
+        final int posTrue = new Random().nextInt(3);
         int k = 0;
         final RadioButton rad[] = new RadioButton[4];
         for (int in = 0; in < 4; in++) {
@@ -96,21 +104,27 @@ public class CardsAdapter extends ArrayAdapter<String>  {
             radioGroup.addView(rad[in]);
             rad[in].setId(in);
         }
-        chuyenCard=false;
+        chuyenCard = false;
         radioGroup.setOnCheckedChangeListener(new RadioGroup.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(RadioGroup radioGroup, int checkedId) {
-                for(int i=0;i<radioGroup.getChildCount();i++) {
+                for (int i = 0; i < radioGroup.getChildCount(); i++) {
                     RadioButton btn = (RadioButton) radioGroup.getChildAt(i);
 //                    int t = radioGroup.getId();
+//                    sp.play(soundId,1,1,0,0,1);
                     if (btn.getId() == checkedId) {
-                        sound_click.start();
+                        sound_click= MediaPlayer.create(getContext(), R.raw.sound_click);
+                        sound_click.setAudioStreamType(AudioManager.STREAM_MUSIC);
+//                        sound_click.setLooping(true);
+                        sound_click.start();//lỗi
+
+
                         if (btn.getId() == posTrue) {
                             chuyenCard = true;
-//                            Toast.makeText(getContext(), "chuyencard =true, change", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "chuyencard =true, change", Toast.LENGTH_SHORT).show();
                         } else {
                             chuyenCard = false;
-//                            Toast.makeText(getContext(), "chuyencard =false, change", Toast.LENGTH_SHORT).show();
+                            Toast.makeText(getContext(), "chuyencard =false, change", Toast.LENGTH_SHORT).show();
                         }
                     }
                 }

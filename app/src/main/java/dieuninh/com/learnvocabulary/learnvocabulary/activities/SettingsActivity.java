@@ -37,15 +37,15 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
     private Context mContext;
     List<Vocabulary> list;
     int numOfList = 0;
-//    static boolean checkNotify=false ;
+    //    static boolean checkNotify=false ;
     private Target viewTarget;
     PendingIntent pendingIntent;
-    private static final String PREF_LOCK_NAME="sharedPrefLock";
-    private static final String PREF_NOTIFY_NAME="sharedPrefNotify";
-    private static final String LOCK="lock";
-    private static final String NOTIFY="notify";
-    SharedPreferences sharedPref_lock,sharedPref_notify;
-    SharedPreferences.Editor editor_lock,editor_notify;
+    private static final String PREF_LOCK_NAME = "sharedPrefLock";
+    private static final String PREF_NOTIFY_NAME = "sharedPrefNotify";
+    private static final String LOCK = "lock";
+    private static final String NOTIFY = "notify";
+    SharedPreferences sharedPref_lock, sharedPref_notify;
+    SharedPreferences.Editor editor_lock, editor_notify;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -53,33 +53,39 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
         mContext = this;
         setContentView(R.layout.activity_settings);
 
-        sharedPref_lock=getApplicationContext().getSharedPreferences(PREF_LOCK_NAME,Context.MODE_PRIVATE);
-        editor_lock=sharedPref_lock.edit();
+        sharedPref_lock = getApplicationContext().getSharedPreferences(PREF_LOCK_NAME, Context.MODE_PRIVATE);
+        editor_lock = sharedPref_lock.edit();
 
-        sharedPref_notify=getApplicationContext().getSharedPreferences(PREF_NOTIFY_NAME,Context.MODE_PRIVATE);
-        editor_notify=sharedPref_notify.edit();
+        sharedPref_notify = getApplicationContext().getSharedPreferences(PREF_NOTIFY_NAME, Context.MODE_PRIVATE);
+        editor_notify = sharedPref_notify.edit();
 
 
         myDBHandler = new DatabaseHandler(SettingsActivity.this);
 
-        list = AppController.getInstance().getListVocabularies();
+//        list = AppController.getInstance().getListVocabularies();
         swich1 = (Switch) findViewById(R.id.sw1);
 
         swich1.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton buttonView, boolean isChecked) {
+                Intent intent = new Intent(SettingsActivity.this, VoService.class);
                 if (isChecked) {
-                    Intent intent = new Intent(SettingsActivity.this, VoService.class);
-                    startService(intent);
+                    if (myDBHandler.checkForTables())//ko rỗng
+                    {
+                        startService(intent);
+                    } else {
+                        Toast.makeText(SettingsActivity.this, R.string.empty_vo, Toast.LENGTH_SHORT).show();
+                        stopService(intent);
+                    }
+
                 } else {
-                    Intent intent = new Intent(SettingsActivity.this, VoService.class);
                     stopService(intent);
                 }
             }
         });
 
         swich1.setChecked(isMyServiceRunning(VoService.class));
-        numOfList = list.size();
+//        numOfList = list.size();
 
         swich2 = (Switch) findViewById(R.id.sw2);
 
@@ -89,32 +95,30 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
 
 
                 if (compoundButton.isChecked()) {
-                    if (numOfList > 0) {
+                    if (myDBHandler.checkForTables()) {
                         Intent alertIntent = new Intent(SettingsActivity.this, AlertReceiver.class);
                         pendingIntent = PendingIntent.getBroadcast(SettingsActivity.this, 0, alertIntent, 0);
 //                        Long alertTime = new GregorianCalendar().getTimeInMillis() + 5 * 1000;//5 second
                         AlarmManager alarmManager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                         alarmManager.cancel(pendingIntent);
 //                      alarmManager.setRepeating(AlarmManager.RTC_WAKEUP,calendar.getTimeInMillis(),alertTime,pendingIntent);
-                        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 2*60*1000, pendingIntent);//-> next từ mới
+                        alarmManager.setInexactRepeating(AlarmManager.RTC_WAKEUP, System.currentTimeMillis(), 2 * 60 * 1000, pendingIntent);//-> next từ mới
 //                        checkNotify = true;
-                        editor_notify.putBoolean(NOTIFY,true).commit();
+                        editor_notify.putBoolean(NOTIFY, true).commit();
 
                     } else {
-                        Toast.makeText(SettingsActivity.this,R.string.empty_vo, Toast.LENGTH_SHORT).show();
+                        Toast.makeText(SettingsActivity.this, R.string.empty_vo, Toast.LENGTH_SHORT).show();
 //                        checkNotify = false;
-                        editor_notify.putBoolean(NOTIFY,false).commit();
+                        editor_notify.putBoolean(NOTIFY, false).commit();
                     }
-                }
-                else
-                {
+                } else {
                     Intent alertIntent = new Intent(SettingsActivity.this, AlertReceiver.class);
                     pendingIntent = PendingIntent.getBroadcast(SettingsActivity.this, 0, alertIntent, 0);
 //                    checkNotify = false;
-                    editor_notify.putBoolean(NOTIFY,false).commit();
+                    editor_notify.putBoolean(NOTIFY, false).commit();
                     AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                     manager.cancel(pendingIntent);
-                    NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                    NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                     notificationManager.cancel(1);
                 }
             }
@@ -125,7 +129,7 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
     }
 
     private Boolean getCheckedOfNotify() {
-        return sharedPref_notify.getBoolean(NOTIFY,false);
+        return sharedPref_notify.getBoolean(NOTIFY, false);
     }
     /*
     public void createNotification1() {
@@ -181,9 +185,13 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
         ActivityManager manager = (ActivityManager) getSystemService(Context.ACTIVITY_SERVICE);
         for (ActivityManager.RunningServiceInfo service : manager.getRunningServices(Integer.MAX_VALUE)) {
             if (serviceClass.getName().equals(service.service.getClassName())) {
+//                Toast.makeText(getApplicationContext(),"Lockscreen true",Toast.LENGTH_SHORT).show();
                 return true;
             }
+
         }
+//        Toast.makeText(getApplicationContext(),"Lockscreen false",Toast.LENGTH_SHORT).show();
+
         return false;
 
     }
