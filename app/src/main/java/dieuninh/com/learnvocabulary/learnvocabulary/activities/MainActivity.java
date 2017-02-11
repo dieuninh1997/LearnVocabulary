@@ -104,7 +104,7 @@ public class MainActivity extends AppCompatActivity {
                     b.setNegativeButton("NO", new DialogInterface.OnClickListener() {
                         @Override
                         public void onClick(DialogInterface dialogInterface, int i) {
-                            Toast.makeText(getApplicationContext(),"No lan xx",Toast.LENGTH_SHORT).show();
+//                            Toast.makeText(getApplicationContext(),"No lan xx",Toast.LENGTH_SHORT).show();
                             dialogInterface.cancel();
                         }
                     });
