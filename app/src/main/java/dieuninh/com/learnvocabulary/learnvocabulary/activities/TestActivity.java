@@ -82,6 +82,7 @@ public class TestActivity extends AppCompatActivity {
                     {
 //                        sound_correct.start();
                         sp_correct.play(sp_correctId,1,1,0,0,1);
+                        Toast.makeText(getApplicationContext(),"sound True", Toast.LENGTH_SHORT).show();
                     }
 
                     dem++;
@@ -103,6 +104,8 @@ public class TestActivity extends AppCompatActivity {
                     {
 //                        sound_wrong.start();
                         sp_wrong.play(sp_wrongId,1,1,0,0,1);
+                        Toast.makeText(getApplicationContext(),"sound False", Toast.LENGTH_SHORT).show();
+
                     }
 
 

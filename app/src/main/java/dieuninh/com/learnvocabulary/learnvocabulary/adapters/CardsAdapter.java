@@ -140,7 +140,7 @@ public class CardsAdapter extends ArrayAdapter<String> {
                                 sound_click.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
                                 sound_click.prepare();
                                 sound_click.start();
-
+                                Toast.makeText(getContext(),"sound click", Toast.LENGTH_SHORT).show();
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
