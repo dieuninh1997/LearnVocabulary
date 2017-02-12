@@ -3,7 +3,9 @@ package dieuninh.com.learnvocabulary.learnvocabulary.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.media.AudioManager;
 import android.media.MediaPlayer;
+import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
@@ -51,16 +53,23 @@ public class TestActivity extends AppCompatActivity {
         mCardStack.setContentResource(R.layout.card_content);
         list = AppController.getInstance().getListVocabularies();
         SIZE=list.size();
-        final MediaPlayer sound_correct=MediaPlayer.create(getApplicationContext(),R.raw.sound_correct);
-        final MediaPlayer sound_wrong=MediaPlayer.create(getApplicationContext(),R.raw.sound_wrong);
+//        final MediaPlayer sound_correct=MediaPlayer.create(getApplicationContext(),R.raw.sound_correct);
+//        final MediaPlayer sound_wrong=MediaPlayer.create(getApplicationContext(),R.raw.sound_wrong);
+
+        final SoundPool sp_correct=new SoundPool(5, AudioManager.STREAM_MUSIC,0);
+        final SoundPool sp_wrong=new SoundPool(5, AudioManager.STREAM_MUSIC,0);
+        final int sp_correctId=sp_correct.load(getApplicationContext(),R.raw.sound_correct,1);
+        final int sp_wrongId=sp_wrong.load(getApplicationContext(),R.raw.sound_wrong,1);
 
         Collections.shuffle(list);
         mCardAdapter = new CardsAdapter(this, list);
         int i=0;
         mCardAdapter.add(String.valueOf(list.get(i)));
         mCardStack.setAdapter(mCardAdapter);
-        final Intent intent_receive=getIntent();
+
         final SharedPreferences s=getApplicationContext().getSharedPreferences("sharedPrefSound", Context.MODE_PRIVATE);
+
+
         mCardStack.setListener(new CardStack.CardEventListener() {
             @Override
             public boolean swipeEnd(int section, float distance) {
@@ -71,7 +80,8 @@ public class TestActivity extends AppCompatActivity {
 
                     if(s.getBoolean("sound",false))
                     {
-                        sound_correct.start();
+//                        sound_correct.start();
+                        sp_correct.play(sp_correctId,1,1,0,0,1);
                     }
 
                     dem++;
@@ -91,8 +101,10 @@ public class TestActivity extends AppCompatActivity {
                 {
                     if(s.getBoolean("sound",false))
                     {
-                        sound_wrong.start();
+//                        sound_wrong.start();
+                        sp_wrong.play(sp_wrongId,1,1,0,0,1);
                     }
+
 
                     Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vib.vibrate(300);
