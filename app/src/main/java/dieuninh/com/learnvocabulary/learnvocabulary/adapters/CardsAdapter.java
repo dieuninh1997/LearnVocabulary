@@ -1,6 +1,9 @@
 package dieuninh.com.learnvocabulary.learnvocabulary.adapters;
 
 import android.app.Activity;
+import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.content.res.AssetFileDescriptor;
 import android.graphics.Color;
 import android.media.AudioManager;
@@ -60,7 +63,7 @@ public class CardsAdapter extends ArrayAdapter<String> {
         cv = (CardView) (contentView.findViewById(R.id.card));
         radioGroup = (RadioGroup) contentView.findViewById(R.id.rad_group);
 
-        final MediaPlayer sound_click=new MediaPlayer();
+        final MediaPlayer sound_click = new MediaPlayer();
 
 
          /*RadioButton radioButton1= (RadioButton) radioGroup.findViewById(R.id.rad_ans_a);
@@ -118,27 +121,29 @@ public class CardsAdapter extends ArrayAdapter<String> {
                     RadioButton btn = (RadioButton) radioGroup.getChildAt(i);
 //                    int t = radioGroup.getId();
 //                    sp.play(soundId,1,1,0,0,1);
+
                     if (btn.getId() == checkedId) {
-                        if(sound_click.isPlaying())
-                        {
-                            sound_click.stop();
-                        }
+                        if (turn_sound()) {
+                            if (sound_click.isPlaying()) {
+                                sound_click.stop();
+                            }
 
 //                        sound_click= MediaPlayer.create(getContext(), R.raw.sound_click);
 //                        sound_click.setAudioStreamType(AudioManager.STREAM_MUSIC);
 //                        sound_click.setLooping(true);
 //                        sound_click.start();//lỗi
 
-                        try {
-                            sound_click.reset();
-                            AssetFileDescriptor afd;
-                            afd=getContext().getAssets().openFd("sound_click.mp3");
-                            sound_click.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
-                            sound_click.prepare();
-                            sound_click.start();
+                            try {
+                                sound_click.reset();
+                                AssetFileDescriptor afd;
+                                afd = getContext().getAssets().openFd("sound_click.mp3");
+                                sound_click.setDataSource(afd.getFileDescriptor(), afd.getStartOffset(), afd.getLength());
+                                sound_click.prepare();
+                                sound_click.start();
 
-                        } catch (Exception e) {
-                            e.printStackTrace();
+                            } catch (Exception e) {
+                                e.printStackTrace();
+                            }
                         }
                         if (btn.getId() == posTrue) {
                             chuyenCard = true;
@@ -156,7 +161,10 @@ public class CardsAdapter extends ArrayAdapter<String> {
         return contentView;
     }
 
-
+    private boolean turn_sound() {
+        SharedPreferences s = getContext().getSharedPreferences("sharedPrefSound", Context.MODE_PRIVATE);
+        return s.getBoolean("sound", false);
+    }
 }
 
 /*

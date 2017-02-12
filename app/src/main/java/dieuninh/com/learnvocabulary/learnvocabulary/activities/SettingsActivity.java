@@ -24,28 +24,35 @@ import java.util.List;
 import br.com.goncalves.pugnotification.interfaces.ImageLoader;
 import br.com.goncalves.pugnotification.interfaces.OnImageLoadingCompleted;
 import dieuninh.com.learnvocabulary.learnvocabulary.R;
+import dieuninh.com.learnvocabulary.learnvocabulary.adapters.CardsAdapter;
 import dieuninh.com.learnvocabulary.learnvocabulary.application.AppController;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.DatabaseHandler;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
 import dieuninh.com.learnvocabulary.learnvocabulary.services.AlertReceiver;
+import dieuninh.com.learnvocabulary.learnvocabulary.services.LockScreenService;
 import dieuninh.com.learnvocabulary.learnvocabulary.services.VoService;
 
 public class SettingsActivity extends AppCompatActivity implements ImageLoader {
-    Switch swich1, swich2;
+    Switch swich1, swich2,swich3_sound;
 
     DatabaseHandler myDBHandler;
     private Context mContext;
-    List<Vocabulary> list;
-    int numOfList = 0;
+//    List<Vocabulary> list;
+//    int numOfList = 0;
     //    static boolean checkNotify=false ;
     private Target viewTarget;
     PendingIntent pendingIntent;
     private static final String PREF_LOCK_NAME = "sharedPrefLock";
     private static final String PREF_NOTIFY_NAME = "sharedPrefNotify";
-    private static final String LOCK = "lock";
+    private static final String PREF_SOUND_NAME = "sharedPrefSound";
+
+
+//    private static final String LOCK = "lock";
     private static final String NOTIFY = "notify";
-    SharedPreferences sharedPref_lock, sharedPref_notify;
-    SharedPreferences.Editor editor_lock, editor_notify;
+    private static final String SOUND = "sound";
+
+    SharedPreferences sharedPref_lock, sharedPref_notify,sharedPref_sound;
+    SharedPreferences.Editor editor_lock, editor_notify, editor_sound;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -58,6 +65,9 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
 
         sharedPref_notify = getApplicationContext().getSharedPreferences(PREF_NOTIFY_NAME, Context.MODE_PRIVATE);
         editor_notify = sharedPref_notify.edit();
+
+        sharedPref_sound = getApplicationContext().getSharedPreferences(PREF_SOUND_NAME, Context.MODE_PRIVATE);
+        editor_sound = sharedPref_sound.edit();
 
 
         myDBHandler = new DatabaseHandler(SettingsActivity.this);
@@ -126,10 +136,43 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
 //        Log.e("CHECK=", checkNotify + "");
         swich2.setChecked(getCheckedOfNotify());
 //        Toast.makeText(getApplicationContext(),getCheckedOfNotify()+"",Toast.LENGTH_SHORT).show();
+
+        swich3_sound= (Switch) findViewById(R.id.sw3);
+        swich3_sound.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
+            @Override
+            public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+                if(b)
+                {
+                    editor_sound.putBoolean(SOUND, true).commit();
+                  /*  Intent i1=new Intent(getApplicationContext(),TestActivity.class);
+                    i1.putExtra("sound1","1");
+                    Toast.makeText(getApplicationContext(),"gui sound 1 intent" , Toast.LENGTH_SHORT).show();
+
+                    Intent i2=new Intent(getApplicationContext(),LockScreenService.class);
+                    i1.putExtra("sound2","1");
+
+                    Intent i3=new Intent(getApplicationContext(),CardsAdapter.class);
+                    i1.putExtra("sound3","1");
+*/
+
+
+                }
+                else
+                {
+                    editor_sound.putBoolean(SOUND, false).commit();
+                }
+            }
+        });
+        swich3_sound.setChecked(getCheckedOfSOund());
+
     }
+
 
     private Boolean getCheckedOfNotify() {
         return sharedPref_notify.getBoolean(NOTIFY, false);
+    }
+    private Boolean getCheckedOfSOund() {
+        return sharedPref_sound.getBoolean(SOUND, false);
     }
     /*
     public void createNotification1() {

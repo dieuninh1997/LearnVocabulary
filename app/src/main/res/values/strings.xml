@@ -14,4 +14,5 @@
     <string name="unable_find_market_app">unable to find market app</string>
     <string name="remember_to_test">Please remember Vocabulary to ready to contest</string>
     <string name="thong_bao_confirm_message">Create a new vocabulary list?\n\nIf you choose YES , all precious vocabulary will be removed.</string>
+    <string name="sound">Sound</string>
 </resources>

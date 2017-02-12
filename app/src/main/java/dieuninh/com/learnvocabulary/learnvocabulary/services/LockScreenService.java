@@ -1,8 +1,10 @@
 package dieuninh.com.learnvocabulary.learnvocabulary.services;
 
+import android.app.Activity;
 import android.app.Service;
 import android.content.Context;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.database.Cursor;
 import android.graphics.PixelFormat;
 import android.media.MediaPlayer;
@@ -126,13 +128,18 @@ public class LockScreenService extends Service {
         three.setFlatEnabled(false);
         four.setFlatEnabled(false);
         final MediaPlayer sound_correct=MediaPlayer.create(getApplicationContext(),R.raw.sound_correct);
+        final SharedPreferences s=getApplicationContext().getSharedPreferences("sharedPrefSound", Context.MODE_PRIVATE);
+
         one.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
 //                one.setBackgroundResource(R.drawable.button_pressed);
 
                 if (nghiaIndex[0] == tuIndex) {
-                    sound_correct.start();
+                    if(s.getBoolean("sound",false))
+                    {
+                        sound_correct.start();
+                    }
                     windowManager.removeView(theme);
                     stopSelf();
                 } else {
@@ -146,7 +153,10 @@ public class LockScreenService extends Service {
             public void onClick(View view) {
 //                two.setBackgroundResource(R.drawable.button_pressed);
                 if (nghiaIndex[1] == tuIndex) {
-                    sound_correct.start();
+                    if(s.getBoolean("sound",false))
+                    {
+                        sound_correct.start();
+                    }
                     windowManager.removeView(theme);
                     stopSelf();
                 } else {
@@ -160,7 +170,12 @@ public class LockScreenService extends Service {
             public void onClick(View view) {
 //                three.setBackgroundResource(R.drawable.button_pressed);
                 if (nghiaIndex[2] == tuIndex) {
-                    sound_correct.start();
+
+                    if(s.getBoolean("sound",false))
+                    {
+                        sound_correct.start();
+                    }
+
                     windowManager.removeView(theme);
                     stopSelf();
                 } else {
@@ -174,7 +189,11 @@ public class LockScreenService extends Service {
             public void onClick(View view) {
 //                four.setBackgroundResource(R.drawable.button_pressed);
                 if (nghiaIndex[3] == tuIndex) {
-                    sound_correct.start();
+                    if(s.getBoolean("sound",false))
+                    {
+                        sound_correct.start();
+                    }
+
                     windowManager.removeView(theme);
                     stopSelf();
                 } else {

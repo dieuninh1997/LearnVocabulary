@@ -1,6 +1,8 @@
 package dieuninh.com.learnvocabulary.learnvocabulary.activities;
 
 import android.content.Context;
+import android.content.Intent;
+import android.content.SharedPreferences;
 import android.media.MediaPlayer;
 import android.os.Bundle;
 import android.os.Vibrator;
@@ -57,13 +59,21 @@ public class TestActivity extends AppCompatActivity {
         int i=0;
         mCardAdapter.add(String.valueOf(list.get(i)));
         mCardStack.setAdapter(mCardAdapter);
+        final Intent intent_receive=getIntent();
+        final SharedPreferences s=getApplicationContext().getSharedPreferences("sharedPrefSound", Context.MODE_PRIVATE);
         mCardStack.setListener(new CardStack.CardEventListener() {
             @Override
             public boolean swipeEnd(int section, float distance) {
 
+
                 if(CardsAdapter.chuyenCard)
                 {
-                    sound_correct.start();
+
+                    if(s.getBoolean("sound",false))
+                    {
+                        sound_correct.start();
+                    }
+
                     dem++;
                     CardsAdapter.chuyenCard=false;
 //                    Toast.makeText(getApplicationContext(),"dem="+dem, Toast.LENGTH_SHORT).show();
@@ -79,7 +89,11 @@ public class TestActivity extends AppCompatActivity {
                 }
                 else
                 {
-                    sound_wrong.start();
+                    if(s.getBoolean("sound",false))
+                    {
+                        sound_wrong.start();
+                    }
+
                     Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vib.vibrate(300);
                     return false;
@@ -113,7 +127,13 @@ public class TestActivity extends AppCompatActivity {
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
 
     }
-     /*private void showDialogHelp() {
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        dem=0;
+    }
+    /*private void showDialogHelp() {
        dialog =  new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)
                 .setTitleText("View Sample app on Google Play")
                 .setContentText("GO GO GO GO GO GO GO GO GO GO GO GO GO GO ")
