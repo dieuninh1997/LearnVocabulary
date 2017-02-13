@@ -78,24 +78,24 @@ public class TestActivity extends AppCompatActivity {
                 if(CardsAdapter.chuyenCard)
                 {
 
-                    if(s.getBoolean("sound",false))
-                    {
+                    if(s.getBoolean("sound",false)) {
 //                        sound_correct.start();
-                        sp_correct.play(sp_correctId,1,1,0,0,1);
-                        Toast.makeText(getApplicationContext(),"sound True", Toast.LENGTH_SHORT).show();
+                        sp_correct.play(sp_correctId, 1, 1, 0, 0, 1);
+//                        Toast.makeText(getApplicationContext(),"sound True", Toast.LENGTH_SHORT).show();
                     }
 
-                    dem++;
-                    CardsAdapter.chuyenCard=false;
+                        dem++;
+                        CardsAdapter.chuyenCard = false;
 //                    Toast.makeText(getApplicationContext(),"dem="+dem, Toast.LENGTH_SHORT).show();
-                    if(dem==SIZE) {
-                        rcvVocabulary.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                        rcvVocabulary.setHasFixedSize(true);
+                        if (dem == SIZE) {
+                            rcvVocabulary.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                            rcvVocabulary.setHasFixedSize(true);
 
-                        adapter = new VocabularyResultAdapter(getApplicationContext(), list);
-                        rcvVocabulary.setAdapter(adapter);
-                        dem=0;
-                    }
+                            adapter = new VocabularyResultAdapter(getApplicationContext(), list);
+                            rcvVocabulary.setAdapter(adapter);
+                            dem = 0;
+                        }
+
                     return true;
                 }
                 else
@@ -104,7 +104,7 @@ public class TestActivity extends AppCompatActivity {
                     {
 //                        sound_wrong.start();
                         sp_wrong.play(sp_wrongId,1,1,0,0,1);
-                        Toast.makeText(getApplicationContext(),"sound False", Toast.LENGTH_SHORT).show();
+//                        Toast.makeText(getApplicationContext(),"sound False", Toast.LENGTH_SHORT).show();
 
                     }
 

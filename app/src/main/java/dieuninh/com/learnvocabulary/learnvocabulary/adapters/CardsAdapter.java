@@ -63,7 +63,9 @@ public class CardsAdapter extends ArrayAdapter<String> {
         cv = (CardView) (contentView.findViewById(R.id.card));
         radioGroup = (RadioGroup) contentView.findViewById(R.id.rad_group);
 
-        final MediaPlayer sound_click = new MediaPlayer();
+//        final MediaPlayer sound_click = new MediaPlayer();
+        final SoundPool sp_click=new SoundPool(5, AudioManager.STREAM_MUSIC,0);
+        final int sp_clickId=sp_click.load(getContext(),R.raw.sound_click,1);
 
 
          /*RadioButton radioButton1= (RadioButton) radioGroup.findViewById(R.id.rad_ans_a);
@@ -124,15 +126,9 @@ public class CardsAdapter extends ArrayAdapter<String> {
 
                     if (btn.getId() == checkedId) {
                         if (turn_sound()) {
-                            if (sound_click.isPlaying()) {
+                           /* if (sound_click.isPlaying()) {
                                 sound_click.stop();
                             }
-
-//                        sound_click= MediaPlayer.create(getContext(), R.raw.sound_click);
-//                        sound_click.setAudioStreamType(AudioManager.STREAM_MUSIC);
-//                        sound_click.setLooping(true);
-//                        sound_click.start();//lỗi
-
                             try {
                                 sound_click.reset();
                                 AssetFileDescriptor afd;
@@ -143,7 +139,9 @@ public class CardsAdapter extends ArrayAdapter<String> {
                                 Toast.makeText(getContext(),"sound click", Toast.LENGTH_SHORT).show();
                             } catch (Exception e) {
                                 e.printStackTrace();
-                            }
+                            }*/
+
+                            sp_click.play(sp_clickId,1,1,0,0,1);
                         }
                         if (btn.getId() == posTrue) {
                             chuyenCard = true;

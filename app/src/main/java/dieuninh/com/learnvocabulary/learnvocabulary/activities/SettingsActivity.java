@@ -129,7 +129,7 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
                     AlarmManager manager = (AlarmManager) getSystemService(Context.ALARM_SERVICE);
                     manager.cancel(pendingIntent);
                     NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
-                    notificationManager.cancel(1);
+                    notificationManager.cancelAll();
                 }
             }
         });
