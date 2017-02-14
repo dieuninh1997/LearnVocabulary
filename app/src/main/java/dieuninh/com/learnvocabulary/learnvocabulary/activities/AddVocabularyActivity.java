@@ -31,7 +31,7 @@ import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
 public class AddVocabularyActivity extends AppCompatActivity implements View.OnClickListener {
     @Bind(R.id.rcv_vocabulary)
     RecyclerView rcvVocabulary;
-    List<Vocabulary> list ;
+    List<Vocabulary> list;
     VocabularyAdapter adapter;
     DatabaseHandler db;
     static int err;
@@ -52,12 +52,12 @@ public class AddVocabularyActivity extends AppCompatActivity implements View.OnC
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_add_vocabulary);
         ButterKnife.bind(this);
-        gson=new Gson();
-        sharedPreference=new MySharedPreference(getApplicationContext());
+        gson = new Gson();
+        sharedPreference = new MySharedPreference(getApplicationContext());
         db = new DatabaseHandler(this);
         rcvVocabulary.setLayoutManager(new LinearLayoutManager(this));
         rcvVocabulary.setHasFixedSize(true);
-        list=getVocaListFromSharedPreference();
+        list = getVocaListFromSharedPreference();
         adapter = new VocabularyAdapter(this, list);
         rcvVocabulary.setAdapter(adapter);
         menu.close(false);
@@ -106,7 +106,7 @@ public class AddVocabularyActivity extends AppCompatActivity implements View.OnC
                         id = vs.getId();
                         nghia = vs.getMeaning();
                         tuMoi = vs.getNewWord();
-                        if (!tuMoi.isEmpty() &&!nghia.isEmpty()) {
+                        if (!tuMoi.isEmpty() && !nghia.isEmpty()) {
                             boolean kt = db.addVocabulary(id, tuMoi, nghia);
                             if (kt) {
                                 listVo.add(vs);
@@ -123,7 +123,7 @@ public class AddVocabularyActivity extends AppCompatActivity implements View.OnC
                     startActivity(myIntent);
                     //
                     if (number > 0) {
-                        Toast.makeText(this,getString(R.string.remember_to_test), Toast.LENGTH_SHORT).show();
+                        Toast.makeText(this, getString(R.string.remember_to_test), Toast.LENGTH_SHORT).show();
                     }
                     AppController.getInstance().setListVocabularies(db.getAllVocabulary());
 
@@ -145,39 +145,39 @@ public class AddVocabularyActivity extends AppCompatActivity implements View.OnC
         }
     }
 
-    private void xoaAllTextVocabulary()
-    {
+    private void xoaAllTextVocabulary() {
         sharedPreference.removeVocaList();
-        list=getVocaListFromSharedPreference();
-        adapter=new VocabularyAdapter(getApplicationContext(),list);
+        list = getVocaListFromSharedPreference();
+        adapter = new VocabularyAdapter(getApplicationContext(), list);
         rcvVocabulary.setAdapter(adapter);
 
     }
 
-    private void saveVoListToSharedPreference(ArrayList voList)
-    {
+    private void saveVoListToSharedPreference(ArrayList voList) {
         //convert ArrayList object to String by Gson
-        String jsonVo=gson.toJson(voList);
+        String jsonVo = gson.toJson(voList);
         //save to shared preference
         sharedPreference.saveVocaList(jsonVo);
     }
+
     /**
      * Retrieving data from sharepref
      */
     private ArrayList<Vocabulary> getVocaListFromSharedPreference() {
         //retrieve data from shared preference
-        String jsonVo=sharedPreference.getVocaList();
-        Type type=new TypeToken<List<Vocabulary>>(){}.getType();
-        vocabulies=gson.fromJson(jsonVo,type);
-        if(vocabulies==null)
-        {
-            vocabulies=new ArrayList<>();
+        String jsonVo = sharedPreference.getVocaList();
+        Type type = new TypeToken<List<Vocabulary>>() {
+        }.getType();
+        vocabulies = gson.fromJson(jsonVo, type);
+        if (vocabulies == null) {
+            vocabulies = new ArrayList<>();
             for (int i = 0; i < 5; i++) {
                 vocabulies.add(new Vocabulary(i));
             }
         }
         return vocabulies;
     }
+
     @Override
     protected void onPause() {
         super.onPause();

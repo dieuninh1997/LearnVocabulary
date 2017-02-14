@@ -87,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                         public void onClick(DialogInterface dialogInterface, int i) {
                             db.deleteAllData();
                             mySharedPreference.removeVocaList();
-                            NotificationManager notificationManager= (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
+                            NotificationManager notificationManager = (NotificationManager) getSystemService(Context.NOTIFICATION_SERVICE);
                             notificationManager.cancelAll();
 /*
 * sau khi tạo list từ mới thì phải cập nhật lại stored words ở List Activity

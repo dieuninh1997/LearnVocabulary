@@ -33,11 +33,11 @@ import dieuninh.com.learnvocabulary.learnvocabulary.services.LockScreenService;
 import dieuninh.com.learnvocabulary.learnvocabulary.services.VoService;
 
 public class SettingsActivity extends AppCompatActivity implements ImageLoader {
-    Switch swich1, swich2,swich3_sound;
+    Switch swich1, swich2, swich3_sound;
 
     DatabaseHandler myDBHandler;
     private Context mContext;
-//    List<Vocabulary> list;
+    //    List<Vocabulary> list;
 //    int numOfList = 0;
     //    static boolean checkNotify=false ;
     private Target viewTarget;
@@ -47,11 +47,11 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
     private static final String PREF_SOUND_NAME = "sharedPrefSound";
 
 
-//    private static final String LOCK = "lock";
+    //    private static final String LOCK = "lock";
     private static final String NOTIFY = "notify";
     private static final String SOUND = "sound";
 
-    SharedPreferences sharedPref_lock, sharedPref_notify,sharedPref_sound;
+    SharedPreferences sharedPref_lock, sharedPref_notify, sharedPref_sound;
     SharedPreferences.Editor editor_lock, editor_notify, editor_sound;
 
     @Override
@@ -137,12 +137,11 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
         swich2.setChecked(getCheckedOfNotify());
 //        Toast.makeText(getApplicationContext(),getCheckedOfNotify()+"",Toast.LENGTH_SHORT).show();
 
-        swich3_sound= (Switch) findViewById(R.id.sw3);
+        swich3_sound = (Switch) findViewById(R.id.sw3);
         swich3_sound.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
             @Override
             public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
-                if(b)
-                {
+                if (b) {
                     editor_sound.putBoolean(SOUND, true).commit();
                   /*  Intent i1=new Intent(getApplicationContext(),TestActivity.class);
                     i1.putExtra("sound1","1");
@@ -156,9 +155,7 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
 */
 
 
-                }
-                else
-                {
+                } else {
                     editor_sound.putBoolean(SOUND, false).commit();
                 }
             }
@@ -171,6 +168,7 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
     private Boolean getCheckedOfNotify() {
         return sharedPref_notify.getBoolean(NOTIFY, false);
     }
+
     private Boolean getCheckedOfSOund() {
         return sharedPref_sound.getBoolean(SOUND, false);
     }

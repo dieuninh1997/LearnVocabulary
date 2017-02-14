@@ -31,7 +31,7 @@ import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
 public class TestActivity extends AppCompatActivity {
     private CardStack mCardStack;
     private CardsAdapter mCardAdapter;
-    public static String [] arrayList;
+    public static String[] arrayList;
     public LinearLayout frRoot;
 
     //android.support.design.widget.FloatingActionButton fab;
@@ -39,8 +39,9 @@ public class TestActivity extends AppCompatActivity {
     RecyclerView rcvVocabulary;
     List<Vocabulary> list;
     VocabularyResultAdapter adapter;
-    public  static int dem=0;
+    public static int dem = 0;
     int SIZE;
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -48,26 +49,26 @@ public class TestActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         arrayList = getResources().getStringArray(R.array.colors);
-        mCardStack = (CardStack)findViewById(R.id.container);
+        mCardStack = (CardStack) findViewById(R.id.container);
         frRoot = (LinearLayout) findViewById(R.id.frRoot);
         mCardStack.setContentResource(R.layout.card_content);
         list = AppController.getInstance().getListVocabularies();
-        SIZE=list.size();
+        SIZE = list.size();
 //        final MediaPlayer sound_correct=MediaPlayer.create(getApplicationContext(),R.raw.sound_correct);
 //        final MediaPlayer sound_wrong=MediaPlayer.create(getApplicationContext(),R.raw.sound_wrong);
 
-        final SoundPool sp_correct=new SoundPool(5, AudioManager.STREAM_MUSIC,0);
-        final SoundPool sp_wrong=new SoundPool(5, AudioManager.STREAM_MUSIC,0);
-        final int sp_correctId=sp_correct.load(getApplicationContext(),R.raw.sound_correct,1);
-        final int sp_wrongId=sp_wrong.load(getApplicationContext(),R.raw.sound_wrong,1);
+        final SoundPool sp_correct = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+        final SoundPool sp_wrong = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+        final int sp_correctId = sp_correct.load(getApplicationContext(), R.raw.sound_correct, 1);
+        final int sp_wrongId = sp_wrong.load(getApplicationContext(), R.raw.sound_wrong, 1);
 
         Collections.shuffle(list);
         mCardAdapter = new CardsAdapter(this, list);
-        int i=0;
+        int i = 0;
         mCardAdapter.add(String.valueOf(list.get(i)));
         mCardStack.setAdapter(mCardAdapter);
 
-        final SharedPreferences s=getApplicationContext().getSharedPreferences("sharedPrefSound", Context.MODE_PRIVATE);
+        final SharedPreferences s = getApplicationContext().getSharedPreferences("sharedPrefSound", Context.MODE_PRIVATE);
 
 
         mCardStack.setListener(new CardStack.CardEventListener() {
@@ -75,35 +76,31 @@ public class TestActivity extends AppCompatActivity {
             public boolean swipeEnd(int section, float distance) {
 
 
-                if(CardsAdapter.chuyenCard)
-                {
+                if (CardsAdapter.chuyenCard) {
 
-                    if(s.getBoolean("sound",false)) {
+                    if (s.getBoolean("sound", false)) {
 //                        sound_correct.start();
                         sp_correct.play(sp_correctId, 1, 1, 0, 0, 1);
 //                        Toast.makeText(getApplicationContext(),"sound True", Toast.LENGTH_SHORT).show();
                     }
 
-                        dem++;
-                        CardsAdapter.chuyenCard = false;
+                    dem++;
+                    CardsAdapter.chuyenCard = false;
 //                    Toast.makeText(getApplicationContext(),"dem="+dem, Toast.LENGTH_SHORT).show();
-                        if (dem == SIZE) {
-                            rcvVocabulary.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
-                            rcvVocabulary.setHasFixedSize(true);
+                    if (dem == SIZE) {
+                        rcvVocabulary.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
+                        rcvVocabulary.setHasFixedSize(true);
 
-                            adapter = new VocabularyResultAdapter(getApplicationContext(), list);
-                            rcvVocabulary.setAdapter(adapter);
-                            dem = 0;
-                        }
+                        adapter = new VocabularyResultAdapter(getApplicationContext(), list);
+                        rcvVocabulary.setAdapter(adapter);
+                        dem = 0;
+                    }
 
                     return true;
-                }
-                else
-                {
-                    if(s.getBoolean("sound",false))
-                    {
+                } else {
+                    if (s.getBoolean("sound", false)) {
 //                        sound_wrong.start();
-                        sp_wrong.play(sp_wrongId,1,1,0,0,1);
+                        sp_wrong.play(sp_wrongId, 1, 1, 0, 0, 1);
 //                        Toast.makeText(getApplicationContext(),"sound False", Toast.LENGTH_SHORT).show();
 
                     }
@@ -146,7 +143,7 @@ public class TestActivity extends AppCompatActivity {
     @Override
     protected void onPause() {
         super.onPause();
-        dem=0;
+        dem = 0;
     }
     /*private void showDialogHelp() {
        dialog =  new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)

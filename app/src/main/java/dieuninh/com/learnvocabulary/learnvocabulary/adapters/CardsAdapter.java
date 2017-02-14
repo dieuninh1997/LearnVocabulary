@@ -64,8 +64,8 @@ public class CardsAdapter extends ArrayAdapter<String> {
         radioGroup = (RadioGroup) contentView.findViewById(R.id.rad_group);
 
 //        final MediaPlayer sound_click = new MediaPlayer();
-        final SoundPool sp_click=new SoundPool(5, AudioManager.STREAM_MUSIC,0);
-        final int sp_clickId=sp_click.load(getContext(),R.raw.sound_click,1);
+        final SoundPool sp_click = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
+        final int sp_clickId = sp_click.load(getContext(), R.raw.sound_click, 1);
 
 
          /*RadioButton radioButton1= (RadioButton) radioGroup.findViewById(R.id.rad_ans_a);
@@ -141,7 +141,7 @@ public class CardsAdapter extends ArrayAdapter<String> {
                                 e.printStackTrace();
                             }*/
 
-                            sp_click.play(sp_clickId,1,1,0,0,1);
+                            sp_click.play(sp_clickId, 1, 1, 0, 0, 1);
                         }
                         if (btn.getId() == posTrue) {
                             chuyenCard = true;
