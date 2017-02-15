@@ -47,7 +47,7 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
     private static final String PREF_SOUND_NAME = "sharedPrefSound";
 
 
-    //    private static final String LOCK = "lock";
+    private static final String LOCK = "lock";
     private static final String NOTIFY = "notify";
     private static final String SOUND = "sound";
 
@@ -82,21 +82,24 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
                 if (isChecked) {
                     if (myDBHandler.checkForTables())//ko rỗng
                     {
+                        editor_lock.putBoolean(LOCK, true).commit();
                         startService(intent);
                     } else {
                         Toast.makeText(SettingsActivity.this, R.string.empty_vo, Toast.LENGTH_SHORT).show();
+                        editor_lock.putBoolean(LOCK, false).commit();
                         stopService(intent);
                     }
 
                 } else {
+                    editor_lock.putBoolean(LOCK, false).commit();
                     stopService(intent);
                 }
             }
         });
 
-        swich1.setChecked(isMyServiceRunning(VoService.class));
+//        swich1.setChecked(isMyServiceRunning(VoService.class));
 //        numOfList = list.size();
-
+        swich1.setChecked(getCheckedOfLock());
         swich2 = (Switch) findViewById(R.id.sw2);
 
         swich2.setOnCheckedChangeListener(new CompoundButton.OnCheckedChangeListener() {
@@ -164,10 +167,14 @@ public class SettingsActivity extends AppCompatActivity implements ImageLoader {
 
     }
 
+    private Boolean getCheckedOfLock() {
+        return sharedPref_lock.getBoolean(LOCK, false);
+    }
 
     private Boolean getCheckedOfNotify() {
         return sharedPref_notify.getBoolean(NOTIFY, false);
     }
+
 
     private Boolean getCheckedOfSOund() {
         return sharedPref_sound.getBoolean(SOUND, false);

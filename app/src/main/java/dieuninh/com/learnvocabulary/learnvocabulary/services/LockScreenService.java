@@ -60,17 +60,14 @@ public class LockScreenService extends Service {
     }
     @Override
     public void onCreate() {
-        super.onCreate();
-    }
 
-    @Override
-    public int onStartCommand(Intent intent, int flags, int startId) {
+        super.onCreate();
         windowManager = (WindowManager) getSystemService(WINDOW_SERVICE);
         WindowManager.LayoutParams params = new WindowManager.LayoutParams(
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 ViewGroup.LayoutParams.MATCH_PARENT,
                 WindowManager.LayoutParams.TYPE_TOAST,
-                WindowManager.LayoutParams.FLAG_SHOW_WHEN_LOCKED,
+                WindowManager.LayoutParams.FLAG_NOT_FOCUSABLE,
 //                PixelFormat.RGBA_8888
                 PixelFormat.TRANSLUCENT
         );
@@ -265,7 +262,6 @@ public class LockScreenService extends Service {
         }*/
 
 
-        return START_STICKY;
     }
 
 
