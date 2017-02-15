@@ -34,7 +34,7 @@ import dieuninh.com.learnvocabulary.learnvocabulary.models.DatabaseHandler;
 public class LockScreenService extends Service {
     WindowManager windowManager;
     TextView tu_moi;
-    RaiflatButton one,two,three,four;
+    RaiflatButton one, two, three, four;
     int dapAnDung;
     int tuIndex;
     int[] nghiaIndex;
@@ -45,7 +45,7 @@ public class LockScreenService extends Service {
     public final int SIZE_OF_VOCA = 130;
     public int SIZE;
     DatabaseHandler myDb;
-    Cursor c=null;
+    Cursor c = null;
     private static final String TABLE_NAME = "VocabularyTable";
 
 
@@ -55,9 +55,10 @@ public class LockScreenService extends Service {
     @Override
     public IBinder onBind(Intent intent) {
         // TODO: Return the communication channel to the service.
-       // throw new UnsupportedOperationException("Not yet implemented");
+        // throw new UnsupportedOperationException("Not yet implemented");
         return null;
     }
+
     @Override
     public void onCreate() {
 
@@ -75,14 +76,13 @@ public class LockScreenService extends Service {
         //WindowManager.LayoutParams.TYPE_TOAST
         params.x = 0;
         params.y = 0;
-        params.gravity =  Gravity.CENTER;
+        params.gravity = Gravity.CENTER;
         LayoutInflater li = (LayoutInflater) getSystemService(LAYOUT_INFLATER_SERVICE);
         final RelativeLayout theme = (RelativeLayout) li.inflate(R.layout.vo_lockscreen, null);
         windowManager.addView(theme, params);
 
 
-
-        Random random ;//= new Random();
+        Random random;//= new Random();
 //        theme.setBackgroundResource(R.drawable.bg2);
       /*  int index = random.nextInt(4);
         switch (index) {
@@ -124,8 +124,8 @@ public class LockScreenService extends Service {
         two.setFlatEnabled(false);
         three.setFlatEnabled(false);
         four.setFlatEnabled(false);
-        final MediaPlayer sound_correct=MediaPlayer.create(getApplicationContext(),R.raw.sound_correct);
-        final SharedPreferences s=getApplicationContext().getSharedPreferences("sharedPrefSound", Context.MODE_PRIVATE);
+        final MediaPlayer sound_correct = MediaPlayer.create(getApplicationContext(), R.raw.sound_correct);
+        final SharedPreferences s = getApplicationContext().getSharedPreferences("sharedPrefSound", Context.MODE_PRIVATE);
 
         one.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -133,8 +133,7 @@ public class LockScreenService extends Service {
 //                one.setBackgroundResource(R.drawable.button_pressed);
 
                 if (nghiaIndex[0] == tuIndex) {
-                    if(s.getBoolean("sound",false))
-                    {
+                    if (s.getBoolean("sound", false)) {
                         sound_correct.start();
                     }
                     windowManager.removeView(theme);
@@ -150,8 +149,7 @@ public class LockScreenService extends Service {
             public void onClick(View view) {
 //                two.setBackgroundResource(R.drawable.button_pressed);
                 if (nghiaIndex[1] == tuIndex) {
-                    if(s.getBoolean("sound",false))
-                    {
+                    if (s.getBoolean("sound", false)) {
                         sound_correct.start();
                     }
                     windowManager.removeView(theme);
@@ -168,8 +166,7 @@ public class LockScreenService extends Service {
 //                three.setBackgroundResource(R.drawable.button_pressed);
                 if (nghiaIndex[2] == tuIndex) {
 
-                    if(s.getBoolean("sound",false))
-                    {
+                    if (s.getBoolean("sound", false)) {
                         sound_correct.start();
                     }
 
@@ -186,8 +183,7 @@ public class LockScreenService extends Service {
             public void onClick(View view) {
 //                four.setBackgroundResource(R.drawable.button_pressed);
                 if (nghiaIndex[3] == tuIndex) {
-                    if(s.getBoolean("sound",false))
-                    {
+                    if (s.getBoolean("sound", false)) {
                         sound_correct.start();
                     }
 
@@ -267,36 +263,32 @@ public class LockScreenService extends Service {
 
     //------------
 
-    int rdNumber(int n1,int n2, int n3, int size)
-    {
-        Random r=new Random();
-        int num=r.nextInt(size);
-        while (num==n1||num==n2||num==n3)
-        {
-            r=new Random();
-            num=r.nextInt(size);
+    int rdNumber(int n1, int n2, int n3, int size) {
+        Random r = new Random();
+        int num = r.nextInt(size);
+        while (num == n1 || num == n2 || num == n3) {
+            r = new Random();
+            num = r.nextInt(size);
         }
         return num;
     }
-    private String getStringDB(int index, int column)
-    {
 
-        String query1="SELECT * FROM "+TABLE_NAME+ " WHERE ID="+index;
-        c=myDb.db.rawQuery(query1,null);
+    private String getStringDB(int index, int column) {
+
+        String query1 = "SELECT * FROM " + TABLE_NAME + " WHERE ID=" + index;
+        c = myDb.db.rawQuery(query1, null);
         c.moveToFirst();
         return c.getString(column);
     }
-    private int getCount()
-    {
+
+    private int getCount() {
         int num;
-        if(myDb.checkForTables()) {
+        if (myDb.checkForTables()) {
             AppController.getInstance().setListVocabularies(myDb.getAllVocabulary());
             num = AppController.getInstance().getListVocabularies().size();
+        } else {
+            num = 0;
         }
-        else
-        {
-            num=0;
-        }
-            return num;
+        return num;
     }
 }
