@@ -12,7 +12,7 @@
 
     <application
         android:allowBackup="true"
-        android:hardwareAccelerated="false"
+        android:hardwareAccelerated="true"
         android:icon="@drawable/logo_lv"
         android:label="@string/app_name"
         android:largeHeap="true"
@@ -29,7 +29,9 @@
 
         <activity android:name=".activities.AddVocabularyActivity"
             android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme">
+            android:screenOrientation="portrait"
+
+            android:theme="@style/AppTheme.Noactionbar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
@@ -37,7 +39,9 @@
 
         <activity android:name=".activities.TestActivity"
             android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme">
+            android:screenOrientation="portrait"
+
+            android:theme="@style/AppTheme.Noactionbar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
@@ -46,7 +50,9 @@
 
         <activity android:name=".activities.SettingsActivity"
             android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme">
+            android:screenOrientation="portrait"
+
+            android:theme="@style/AppTheme.Noactionbar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
@@ -74,7 +80,9 @@
 
         <activity android:name=".activities.VocaListActivity"
             android:parentActivityName=".activities.MainActivity"
-            android:theme="@style/AppTheme">
+            android:screenOrientation="portrait"
+
+            android:theme="@style/AppTheme.Noactionbar">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />

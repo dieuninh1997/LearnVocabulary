@@ -4,12 +4,20 @@ public class Vocabulary {
     private String newWord; // tu moi
     private String meaning;// nghia
     private int id;
-
+private int posColorCard;
     public Vocabulary() {
     }
 
     public Vocabulary(int i) {
         id = i;
+    }
+
+    public int getPosColorCard() {
+        return posColorCard;
+    }
+
+    public void setPosColorCard(int posColorCard) {
+        this.posColorCard = posColorCard;
     }
 
     public int getId() {

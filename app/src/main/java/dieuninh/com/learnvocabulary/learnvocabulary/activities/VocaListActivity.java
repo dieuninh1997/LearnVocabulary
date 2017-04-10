@@ -12,6 +12,7 @@ import android.text.Editable;
 import android.text.TextWatcher;
 import android.util.Log;
 import android.view.Menu;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.CursorAdapter;
 import android.widget.LinearLayout;
@@ -65,9 +66,13 @@ public class VocaListActivity extends AppCompatActivity {
         int size = list.size();
         if (size == 0) {
             tv_thongbao.setText(R.string.text_of_number_words);
+            tv_thongbao.setVisibility(View.VISIBLE);
         } else {
+
             adapter = new VocabularyResultAdapter(this, list);
             rcvVocabulary.setAdapter(adapter);
+            tv_thongbao.setVisibility(View.GONE);
+
         }
 
     }
@@ -81,7 +86,6 @@ public class VocaListActivity extends AppCompatActivity {
         searchAutoComplete= (SearchView.SearchAutoComplete) searchView.findViewById(android.support.v7.appcompat.R.id.search_src_text);
         searchAutoComplete.setHintTextColor(Color.WHITE);
         searchAutoComplete.setTextColor(Color.WHITE);
-        searchAutoComplete.setThreshold(1);
         searchAutoComplete.addTextChangedListener(new TextWatcher() {
             @Override
             public void beforeTextChanged(CharSequence charSequence, int i, int i1, int i2) {
@@ -108,7 +112,7 @@ public class VocaListActivity extends AppCompatActivity {
             }
         });
 
-           searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+       //    searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
         searchView.setSuggestionsAdapter(searchAdapter);
 
     return super.onCreateOptionsMenu(menu);

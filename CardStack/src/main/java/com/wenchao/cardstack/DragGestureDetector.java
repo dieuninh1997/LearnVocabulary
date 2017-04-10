@@ -6,17 +6,31 @@ import android.support.v4.view.MotionEventCompat;
 import android.util.Log;
 import android.view.GestureDetector;
 import android.view.MotionEvent;
-import android.view.View;
+
 
 //detect both tap and drag
-public class DragGestureDetector implements View.OnTouchListener {
+public class DragGestureDetector {
     public static String DEBUG_TAG = "DragGestureDetector";
     private GestureDetectorCompat mGestureDetector;
     private DragListener mListener;
     private boolean mStarted = false;
     private MotionEvent mOriginalEvent;
+    public interface DragListener {
+        boolean onDragStart(MotionEvent e1, MotionEvent e2, float distanceX,
+                            float distanceY);
+        boolean onDragContinue(MotionEvent e1, MotionEvent e2, float distanceX,
+                               float distanceY);
+        boolean onDragEnd(MotionEvent e1, MotionEvent e2);
 
-    @Override public boolean onTouch(View v, MotionEvent event) {
+        boolean onTapUp();
+    }
+
+    public DragGestureDetector(Context context, DragListener myDragListener){
+        mGestureDetector = new GestureDetectorCompat(context,new MyGestureListener());
+        mListener = myDragListener;
+    }
+
+    public void onTouchEvent(MotionEvent event){
         mGestureDetector.onTouchEvent(event);
         int action = MotionEventCompat.getActionMasked(event);
         switch(action) {
@@ -26,30 +40,12 @@ public class DragGestureDetector implements View.OnTouchListener {
                     mListener.onDragEnd(mOriginalEvent, event);
                 }
                 mStarted = false;
-                break;
             case (MotionEvent.ACTION_DOWN) :
                 //need to set this, quick tap will not generate drap event, so the
                 //originalEvent may be null for case action_up
                 //which lead to null pointer
                 mOriginalEvent = event;
-                break;
         }
-        return true;
-    }
-
-    public interface DragListener {
-        boolean onDragStart(MotionEvent e1, MotionEvent e2, float distanceX,
-                                float distanceY);
-        boolean onDragContinue(MotionEvent e1, MotionEvent e2, float distanceX,
-                                   float distanceY);
-        boolean onDragEnd(MotionEvent e1, MotionEvent e2);
-
-        boolean onTapUp();
-    }
-
-    public DragGestureDetector(Context context, DragListener myDragListener){
-        mGestureDetector = new GestureDetectorCompat(context,new MyGestureListener());
-        mListener = myDragListener;
     }
 
     class MyGestureListener extends GestureDetector.SimpleOnGestureListener {

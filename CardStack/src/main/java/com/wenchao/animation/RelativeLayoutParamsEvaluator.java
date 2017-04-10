@@ -1,8 +1,7 @@
 package com.wenchao.animation;
 
 import android.animation.TypeEvaluator;
-import android.widget.RelativeLayout.LayoutParams
-        ;
+import android.widget.RelativeLayout.LayoutParams;
 
 import com.wenchao.cardstack.CardUtils;
 

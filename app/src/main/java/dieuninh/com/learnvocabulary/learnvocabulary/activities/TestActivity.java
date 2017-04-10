@@ -3,19 +3,25 @@ package dieuninh.com.learnvocabulary.learnvocabulary.activities;
 import android.content.Context;
 import android.content.Intent;
 import android.content.SharedPreferences;
+import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
+import android.os.SystemClock;
 import android.os.Vibrator;
 import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
+import android.view.MotionEvent;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
 import android.widget.Toast;
 
+import com.wenchao.cardstack.CardAnimator;
 import com.wenchao.cardstack.CardStack;
+import com.wenchao.cardstack.CardUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -32,11 +38,14 @@ public class TestActivity extends AppCompatActivity {
     private CardStack mCardStack;
     private CardsAdapter mCardAdapter;
     public static String[] arrayList;
+    public static String[] colorbgs;
     public LinearLayout frRoot;
 
     //android.support.design.widget.FloatingActionButton fab;
     @Bind(R.id.rcv_vocabulary)
     RecyclerView rcvVocabulary;
+    @Bind(R.id.ll_root)
+    RelativeLayout llRoot;
     List<Vocabulary> list;
     VocabularyResultAdapter adapter;
     public static int dem = 0;
@@ -49,6 +58,7 @@ public class TestActivity extends AppCompatActivity {
 
         ButterKnife.bind(this);
         arrayList = getResources().getStringArray(R.array.colors);
+        colorbgs = getResources().getStringArray(R.array.colors_bg);
         mCardStack = (CardStack) findViewById(R.id.container);
         frRoot = (LinearLayout) findViewById(R.id.frRoot);
         mCardStack.setContentResource(R.layout.card_content);
@@ -67,9 +77,12 @@ public class TestActivity extends AppCompatActivity {
         int i = 0;
         mCardAdapter.add(String.valueOf(list.get(i)));
         mCardStack.setAdapter(mCardAdapter);
-
+        setBg();
         final SharedPreferences s = getApplicationContext().getSharedPreferences("sharedPrefSound", Context.MODE_PRIVATE);
-
+        mCardStack.setStackMargin(40);
+        mCardStack.setStackGravity(CardAnimator.TOP);
+        mCardStack.setVisibleCardNum(4);
+        mCardStack.setEnableRotation(true);
 
         mCardStack.setListener(new CardStack.CardEventListener() {
             @Override
@@ -87,6 +100,7 @@ public class TestActivity extends AppCompatActivity {
                     dem++;
                     CardsAdapter.chuyenCard = false;
 //                    Toast.makeText(getApplicationContext(),"dem="+dem, Toast.LENGTH_SHORT).show();
+                    setBg();
                     if (dem == SIZE) {
                         rcvVocabulary.setLayoutManager(new LinearLayoutManager(getApplicationContext()));
                         rcvVocabulary.setHasFixedSize(true);
@@ -95,6 +109,7 @@ public class TestActivity extends AppCompatActivity {
                         rcvVocabulary.setAdapter(adapter);
                         dem = 0;
                     }
+
 
                     return true;
                 } else {
@@ -137,7 +152,56 @@ public class TestActivity extends AppCompatActivity {
             }
         });
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+        // Obtain MotionEvent object
+        long downTime = SystemClock.uptimeMillis();
+        long eventTime = SystemClock.uptimeMillis() + 100;
+        float x = 0.0f;
+        float y = 0.0f;
+// List of meta states found here:     developer.android.com/reference/android/view/KeyEvent.html#getMetaState()
+        int metaState = 0;
+        final MotionEvent motionEvent = MotionEvent.obtain(
+                downTime,
+                eventTime,
+                MotionEvent.ACTION_DOWN,
+                x,
+                y,
+                metaState
+        );
+        long downTime1 = SystemClock.uptimeMillis();
+        long eventTime1 = SystemClock.uptimeMillis() + 200;
+        float x1 = 2.0f;
+        float y1 = 2.0f;
+// List of meta states found here:     developer.android.com/reference/android/view/KeyEvent.html#getMetaState()
+        int metaState1 = 0;
+        final MotionEvent motionEvent1 = MotionEvent.obtain(
+                downTime1,
+                eventTime1,
+                MotionEvent.ACTION_MOVE,
+                x1,
+                y1,
+                metaState1
+        );
+//        runOnUiThread(new Runnable() {
+//            @Override
+//            public void run() {
+//                try {
+//                    Thread.sleep(1000);
+//                    mCardStack.getmCardAnimator().drag(motionEvent,motionEvent1,200,200);
+//
+//                } catch (InterruptedException e) {
+//                    e.printStackTrace();
+//                }
+//
+//
+//            }
+//        });
+    }
 
+    private void setBg() {
+        if(mCardStack.getCurrIndex() < mCardAdapter.getCount()-1) {
+            int posColor = mCardAdapter.getItemVocal(mCardStack.getCurrIndex()+1).getPosColorCard();
+            llRoot.setBackgroundColor(Color.parseColor(colorbgs[posColor]));
+        }
     }
 
     @Override

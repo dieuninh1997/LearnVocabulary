@@ -9,11 +9,13 @@ import android.graphics.Color;
 import android.media.AudioManager;
 import android.media.MediaPlayer;
 import android.media.SoundPool;
+import android.support.annotation.Nullable;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
 import android.widget.CompoundButton;
+import android.widget.LinearLayout;
 import android.widget.RadioButton;
 import android.widget.RadioGroup;
 import android.widget.TextView;
@@ -51,6 +53,9 @@ public class CardsAdapter extends ArrayAdapter<String> {
 
     }
 
+    public Vocabulary getItemVocal(int pos){
+      return list.get(pos);
+    }
     @Override
     public View getView(int position, final View contentView, ViewGroup parent) {
 
@@ -62,7 +67,7 @@ public class CardsAdapter extends ArrayAdapter<String> {
         v = (TextView) (contentView.findViewById(R.id.tv_newword));
         cv = (CardView) (contentView.findViewById(R.id.card));
         radioGroup = (RadioGroup) contentView.findViewById(R.id.rad_group);
-
+        radioGroup.setOrientation(LinearLayout.VERTICAL);
 //        final MediaPlayer sound_click = new MediaPlayer();
         final SoundPool sp_click = new SoundPool(5, AudioManager.STREAM_MUSIC, 0);
         final int sp_clickId = sp_click.load(getContext(), R.raw.sound_click, 1);
@@ -156,6 +161,7 @@ public class CardsAdapter extends ArrayAdapter<String> {
         });
         int i = new Random().nextInt(TestActivity.arrayList.length - 3);
         cv.setCardBackgroundColor(Color.parseColor(TestActivity.arrayList[i]));
+        vocabularyTrue.setPosColorCard(i);
         return contentView;
     }
 
