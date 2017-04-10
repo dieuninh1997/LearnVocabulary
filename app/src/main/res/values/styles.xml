@@ -10,7 +10,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlNormal">@color/bg_login</item>
         <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="colorControlHighlight">@color/colorAccent</item>
+
     </style>
 
     <style name="AppTheme.Noactionbar" parent="Theme.AppCompat.Light.NoActionBar">
@@ -22,7 +22,7 @@
         <item name="colorAccent">@color/colorAccent</item>
         <item name="colorControlNormal">#f5f5f5</item>
         <item name="colorControlActivated">@color/colorAccent</item>
-        <item name="colorControlHighlight">@color/colorAccent</item>
+
 
     </style>
 
