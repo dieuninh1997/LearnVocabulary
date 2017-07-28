@@ -9,13 +9,15 @@
     <uses-permission android:name="android.permission.READ_PHONE_STATE" />
     <uses-permission android:name="android.permission.VIBRATE" />
     <uses-permission android:name="com.android.alarm.permission.SET_ALARM"/>
-
+<!--        android:icon="@drawable/logo_lv"
+-->
     <application
         android:allowBackup="true"
         android:hardwareAccelerated="true"
-        android:icon="@drawable/logo_lv"
+        android:icon="@mipmap/ic_launcher"
         android:label="@string/app_name"
         android:largeHeap="true"
+        android:name=".application.AppController"
         android:supportsRtl="true">
         <activity android:name=".activities.MainActivity"
             android:screenOrientation="portrait"
@@ -30,8 +32,7 @@
         <activity android:name=".activities.AddVocabularyActivity"
             android:parentActivityName=".activities.MainActivity"
             android:screenOrientation="portrait"
-
-            android:theme="@style/AppTheme.Noactionbar">
+            android:theme="@style/AppTheme">
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value=".activities.MainActivity" />
@@ -93,6 +94,10 @@
             android:enabled="true"
             android:exported="true"
             > </receiver>
+        <meta-data
+            android:name="io.fabric.ApiKey"
+            android:value="fe40cc6e6a158e06d023033afbe8f0e5233f76c4" />
     </application>
 
+    <uses-permission android:name="android.permission.INTERNET" />
 </manifest>

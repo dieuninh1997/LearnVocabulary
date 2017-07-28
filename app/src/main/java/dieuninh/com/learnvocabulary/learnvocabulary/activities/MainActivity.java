@@ -12,32 +12,42 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.CardView;
 import android.view.View;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.crashlytics.android.Crashlytics;
+
+import butterknife.Bind;
+import butterknife.ButterKnife;
+import butterknife.OnClick;
 import dieuninh.com.learnvocabulary.learnvocabulary.R;
 import dieuninh.com.learnvocabulary.learnvocabulary.application.AppController;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.DatabaseHandler;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.MySharedPreference;
+import dieuninh.com.learnvocabulary.learnvocabulary.utils.CommonUtils;
+import io.fabric.sdk.android.Fabric;
 
 public class MainActivity extends AppCompatActivity {
     CardView cv_start, cv_new, cv_storedList, cv_settings;
     DatabaseHandler db;
-    TextView tv_stortedwords;
     static int num;
     MySharedPreference mySharedPreference;
+    @Bind(R.id.tvName)
+    TextView tvName;
+    @Bind(R.id.tv_status)
+    TextView tvStatus;
 
     @RequiresApi(api = Build.VERSION_CODES.LOLLIPOP)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Fabric.with(this, new Crashlytics());
 
         setContentView(R.layout.activity_main);
+        ButterKnife.bind(this);
         clickNotification();
         anhXa();
         chon();
         AppController.getInstance().setListVocabularies(db.getAllVocabulary());
         num = AppController.getInstance().getListVocabularies().size();
-        tv_stortedwords.setText(String.format(getString(R.string.stored_number_words), num));
 
 
       /*  cv_start.setOutlineProvider(new ViewOutlineProvider() {
@@ -96,7 +106,6 @@ public class MainActivity extends AppCompatActivity {
 * */
 //                          Toast.makeText(getApplicationContext(),"Xoa thanh cong",Toast.LENGTH_SHORT).show();
                             num = 0;
-                            tv_stortedwords.setText(String.format(getString(R.string.stored_number_words), num));
                             Intent intent = new Intent(MainActivity.this, AddVocabularyActivity.class);
                             startActivity(intent);
                         }
@@ -150,7 +159,6 @@ public class MainActivity extends AppCompatActivity {
         Intent callerIntent = getIntent();
         Bundle bundleFromCaller = callerIntent.getBundleExtra("MyIntent");
         num = bundleFromCaller.getInt("number");
-        tv_stortedwords.setText(String.format(getString(R.string.stored_number_words), num));
     }
 
     private void anhXa() {
@@ -159,7 +167,6 @@ public class MainActivity extends AppCompatActivity {
         cv_new = (CardView) findViewById(R.id.cv_new);
         cv_storedList = (CardView) findViewById(R.id.cv_storedList);
         cv_settings = (CardView) findViewById(R.id.cv_settings);
-        tv_stortedwords = (TextView) findViewById(R.id.tv_storedwords);
         db = new DatabaseHandler(this);
         mySharedPreference = new MySharedPreference(getApplicationContext());
     }
@@ -168,5 +175,17 @@ public class MainActivity extends AppCompatActivity {
     protected void onResume() {
         db.getWritableDatabase();
         super.onResume();
+    }
+
+    @OnClick({R.id.cv_share, R.id.cv_rate})
+    public void onViewClicked(View view) {
+        switch (view.getId()) {
+            case R.id.cv_share:
+                CommonUtils.shareSimpleText("https://play.google.com/store/apps/details?id=" + this.getPackageName(), this);
+                break;
+            case R.id.cv_rate:
+                CommonUtils.launchMarket(this);
+                break;
+        }
     }
 }

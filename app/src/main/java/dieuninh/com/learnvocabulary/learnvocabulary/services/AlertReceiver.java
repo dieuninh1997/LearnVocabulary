@@ -5,8 +5,6 @@ import android.app.PendingIntent;
 import android.content.BroadcastReceiver;
 import android.content.Context;
 import android.content.Intent;
-import android.content.SharedPreferences;
-import android.widget.Toast;
 
 import java.util.List;
 import java.util.Random;
@@ -15,8 +13,6 @@ import br.com.goncalves.pugnotification.notification.Load;
 import br.com.goncalves.pugnotification.notification.PugNotification;
 import dieuninh.com.learnvocabulary.learnvocabulary.R;
 import dieuninh.com.learnvocabulary.learnvocabulary.activities.MainActivity;
-import dieuninh.com.learnvocabulary.learnvocabulary.activities.VocaListActivity;
-import dieuninh.com.learnvocabulary.learnvocabulary.application.AppController;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.DatabaseHandler;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
 
@@ -29,9 +25,8 @@ public class AlertReceiver extends BroadcastReceiver {
     @Override
     public void onReceive(Context context, Intent intent) {
 
-        list = AppController.getInstance().getListVocabularies();
-        numOfList = list.size();
         db = new DatabaseHandler(context);
+
 /*
 * Cho hàm ktra xem database có rỗng ko? nếu rỗng thì false notification + thông báo
 * ngược lại hirenj thông báo như bình thường
@@ -39,6 +34,9 @@ public class AlertReceiver extends BroadcastReceiver {
 * */
 
         if(db.checkForTables()) {//nếu có data
+            list = db.getAllVocabulary();
+            if(list==null || list.isEmpty()) return;
+            numOfList = list.size();
             Random random = new Random();
             int num = random.nextInt(numOfList);
             String tuMoi = getTu(num, 1);
@@ -82,7 +80,7 @@ public class AlertReceiver extends BroadcastReceiver {
         else
         {
 
-            Toast.makeText(context,context.getString(R.string.empty_vo),Toast.LENGTH_SHORT).show();
+            //Toast.makeText(context,context.getString(R.string.empty_vo),Toast.LENGTH_SHORT).show();
 
         }
     }

@@ -1,11 +1,9 @@
 package dieuninh.com.learnvocabulary.learnvocabulary.activities;
 
 import android.content.Context;
-import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Color;
 import android.media.AudioManager;
-import android.media.MediaPlayer;
 import android.media.SoundPool;
 import android.os.Bundle;
 import android.os.SystemClock;
@@ -14,14 +12,13 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.LinearLayoutManager;
 import android.support.v7.widget.RecyclerView;
 import android.view.MotionEvent;
+import android.view.View;
 import android.view.WindowManager;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
-import android.widget.Toast;
 
 import com.wenchao.cardstack.CardAnimator;
 import com.wenchao.cardstack.CardStack;
-import com.wenchao.cardstack.CardUtils;
 
 import java.util.Collections;
 import java.util.List;
@@ -34,7 +31,7 @@ import dieuninh.com.learnvocabulary.learnvocabulary.adapters.VocabularyResultAda
 import dieuninh.com.learnvocabulary.learnvocabulary.application.AppController;
 import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
 
-public class TestActivity extends AppCompatActivity {
+public class TestActivity extends AppCompatActivity implements View.OnClickListener {
     private CardStack mCardStack;
     private CardsAdapter mCardAdapter;
     public static String[] arrayList;
@@ -123,6 +120,9 @@ public class TestActivity extends AppCompatActivity {
 
                     Vibrator vib = (Vibrator) getSystemService(Context.VIBRATOR_SERVICE);
                     vib.vibrate(300);
+
+
+
                     return false;
                 }
             }
@@ -151,7 +151,32 @@ public class TestActivity extends AppCompatActivity {
 
             }
         });
+
+
         getWindow().setSoftInputMode(WindowManager.LayoutParams.SOFT_INPUT_STATE_ALWAYS_HIDDEN);
+
+
+    }
+
+    private void setBg() {
+        if(mCardStack.getCurrIndex() < mCardAdapter.getCount()-1) {
+            int posColor = mCardAdapter.getItemVocal(mCardStack.getCurrIndex()+1).getPosColorCard();
+
+                llRoot.setBackgroundColor(Color.parseColor(colorbgs[posColor]));
+
+
+
+        }
+    }
+
+    @Override
+    protected void onPause() {
+        super.onPause();
+        dem = 0;
+    }
+
+    @Override
+    public void onClick(View view) {
         // Obtain MotionEvent object
         long downTime = SystemClock.uptimeMillis();
         long eventTime = SystemClock.uptimeMillis() + 100;
@@ -181,33 +206,7 @@ public class TestActivity extends AppCompatActivity {
                 y1,
                 metaState1
         );
-//        runOnUiThread(new Runnable() {
-//            @Override
-//            public void run() {
-//                try {
-//                    Thread.sleep(1000);
-//                    mCardStack.getmCardAnimator().drag(motionEvent,motionEvent1,200,200);
-//
-//                } catch (InterruptedException e) {
-//                    e.printStackTrace();
-//                }
-//
-//
-//            }
-//        });
-    }
-
-    private void setBg() {
-        if(mCardStack.getCurrIndex() < mCardAdapter.getCount()-1) {
-            int posColor = mCardAdapter.getItemVocal(mCardStack.getCurrIndex()+1).getPosColorCard();
-            llRoot.setBackgroundColor(Color.parseColor(colorbgs[posColor]));
-        }
-    }
-
-    @Override
-    protected void onPause() {
-        super.onPause();
-        dem = 0;
+       mCardStack.undo();
     }
     /*private void showDialogHelp() {
        dialog =  new SweetAlertDialog(this, SweetAlertDialog.WARNING_TYPE)

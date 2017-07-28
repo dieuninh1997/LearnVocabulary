@@ -213,7 +213,7 @@ public class CardStack extends RelativeLayout {
         for (int i = 0; i < mNumVisible; i++) {
             addContainerViews(i == mNumVisible - 1 && animFirst);
         }
-        setupAnimation();
+       setupAnimation();
         loadData();
     }
 
@@ -394,7 +394,7 @@ public class CardStack extends RelativeLayout {
     }
 
     // 加载下一个
-    private void loadLast() {
+    public void loadLast() {
         ViewGroup parent = (ViewGroup) viewCollection.get(0);
         int lastIndex = ((mNumVisible - 1) + mIndex);
 

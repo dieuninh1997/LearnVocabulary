@@ -33,5 +33,34 @@
         <item name="android:background">@color/divider_home</item>
     </style>
 
+    <style name="textStyleCardMain">
+        <item name="android:layout_width">wrap_content</item>
+        <item name="android:layout_height">wrap_content</item>
+        <item name="android:layout_below">@id/img_rate</item>
+        <item name="android:layout_centerHorizontal">true</item>
+        <item name="android:layout_marginTop">12dp</item>
+        <item name="android:textAllCaps">true</item>
+        <item name="android:textColor">@color/black_de</item>
+        <item name="android:textSize">@dimen/text_size_card_main</item>
+        <item name="android:textStyle">bold</item>
+    </style>
+
+    <style name="cardMainStyle">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:foreground">?selectableItemBackground</item>
+
+        <item name="android:layout_marginRight">@dimen/size_margin_card_main</item>
+    </style>
+    <style name="cardMainStyleRight">
+        <item name="android:layout_width">0dp</item>
+        <item name="android:layout_height">match_parent</item>
+        <item name="android:layout_weight">1</item>
+        <item name="android:background">?selectableItemBackground</item>
+        <item name="android:foreground">?selectableItemBackground</item>
+
+    </style>
 
 </resources>

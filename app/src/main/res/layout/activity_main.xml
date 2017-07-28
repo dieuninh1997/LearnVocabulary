@@ -1,213 +1,267 @@
 <?xml version="1.0" encoding="utf-8"?>
-<LinearLayout xmlns:android="http://schemas.android.com/apk/res/android"
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@drawable/main_background"
-    android:orientation="vertical"
-    android:paddingBottom="3dp"
-    android:paddingLeft="3dp"
-    android:paddingRight="3dp"
-    android:weightSum="2">
-
-    <include layout="@layout/toolbar_with_title" />
+    android:background="#ECF2F4"
+    android:fitsSystemWindows="true">
 
     <LinearLayout
+        android:id="@+id/linearLayout4"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:orientation="horizontal"
-        android:layout_margin="0dp"
-        android:padding="0dp"
-        android:weightSum="2">
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/cv_start"
-            style="@style/cardMainStyle"
-            app:cardCornerRadius="@dimen/card_radius"
-            app:cardElevation="@dimen/card_elevation"
-            app:cardUseCompatPadding="true">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-                <ImageView
-                    android:id="@+id/img_start"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_start2" />
-
-                <TextView
-                    android:id="@+id/txt_start"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/img_start"
-                    android:layout_centerHorizontal="true"
-                    android:padding="10dp"
-                    android:text="Start"
-                    android:textColor="#023d13"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txt_start"
-                    android:layout_centerHorizontal="true"
-                    android:paddingLeft="10dp"
-                    android:text="Go to test"
-                    android:textColor="#023d13"
-                    android:textSize="14sp" />
-
-            </RelativeLayout>
-
-        </android.support.v7.widget.CardView>
-
-        <android.support.v7.widget.CardView
-            android:id="@+id/cv_new"
-            style="@style/cardMainStyle"
-            app:cardCornerRadius="@dimen/card_radius"
-            app:cardElevation="@dimen/card_elevation"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true">
-
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
-
-                <ImageView
-                    android:id="@+id/img_new"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_new3" />
-
-                <TextView
-                    android:id="@+id/txt_new"
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/img_new"
-                    android:layout_centerHorizontal="true"
-                    android:padding="10dp"
-                    android:text="New"
-                    android:textColor="#023d13"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
-
-                <TextView
-                    android:layout_width="wrap_content"
-                    android:layout_height="wrap_content"
-                    android:layout_below="@+id/txt_new"
-                    android:layout_centerHorizontal="true"
-                    android:paddingLeft="10dp"
-                    android:text="Create cards"
-                    android:textColor="#023d13"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
+        android:layout_height="@dimen/size_header_main"
+        android:background="#2189f6"
+        android:orientation="vertical"
+    >
     </LinearLayout>
-
+    <ImageView
+        android:id="@+id/imageView2"
+        android:layout_width="@dimen/size_avt"
+        android:layout_height="@dimen/size_avt"
+        android:layout_centerHorizontal="true"
+        android:layout_marginTop="16dp"
+        app:srcCompat="@drawable/icon"
+      />
+    <TextView
+        android:id="@+id/tvName"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:text="DuongKK"
+        android:textColor="@color/white"
+        android:textSize="22sp"
+        android:layout_below="@+id/imageView2"
+        android:layout_marginTop="16dp"
+        android:layout_centerHorizontal="true"
+  />
+    <TextView
+        android:id="@+id/tv_status"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:fontFamily="sans-serif-light"
+        android:gravity="center"
+        android:text="Good job. Try your best!"
+        android:textColor="@color/white"
+        android:textSize="16sp"
+        android:layout_marginTop="8dp"
+        android:layout_below="@+id/tvName"
+        android:layout_centerHorizontal="true"
+ />
     <LinearLayout
+        android:id="@+id/layoutroot"
         android:layout_width="match_parent"
-        android:layout_height="0dp"
-        android:layout_weight="1"
-        android:layout_margin="0dp"
-        android:padding="0dp"
-        android:orientation="horizontal"
-        android:weightSum="2">
+        android:layout_height="match_parent"
+        android:layout_marginEnd="@dimen/size_margin_card_main"
+        android:layout_marginLeft="@dimen/size_margin_card_main"
+        android:layout_marginRight="@dimen/size_margin_card_main"
+        android:layout_marginStart="@dimen/size_margin_card_main"
+        android:layout_marginTop="200dp"
+        android:orientation="vertical"
+        android:visibility="visible"
+        android:weightSum="3"
+   >
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cv_storedList"
-            style="@style/cardMainStyle"
-            app:cardCornerRadius="@dimen/card_radius"
-            app:cardElevation="@dimen/card_elevation"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true">
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2">
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_start"
+                style="@style/cardMainStyle"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_radius_main"
+                app:cardUseCompatPadding="true">
 
-                <ImageView
-                    android:id="@+id/img_list"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_list1" />
-
-                <TextView
-                    android:id="@+id/tv_newword"
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/img_list"
-                    android:layout_centerHorizontal="true"
-                    android:padding="10dp"
-                    android:text="Vocabulary List"
-                    android:textColor="#023d13"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center">
 
-                <TextView
-                    android:id="@+id/tv_storedwords"
+                    <ImageView
+                        android:id="@+id/img_start"
+                        android:layout_width="@dimen/size_icon_card"
+                        android:layout_height="@dimen/size_icon_card"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_new3" />
+
+                    <TextView
+                        android:id="@+id/txt_start"
+                        style="@style/textStyleCardMain"
+                        android:layout_below="@+id/img_start"
+                        android:text="Start" />
+
+
+                </RelativeLayout>
+
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_new"
+                style="@style/cardMainStyleRight"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_radius_main"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/tv_newword"
-                    android:layout_centerHorizontal="true"
-                    android:paddingLeft="10dp"
-                    android:text="Stored %d words"
-                    android:textColor="#023d13"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
+                    android:layout_gravity="center">
 
-        <android.support.v7.widget.CardView
-            android:id="@+id/cv_settings"
-            style="@style/cardMainStyle"
-            android:foreground="?selectableItemBackground"
-            app:cardCornerRadius="@dimen/card_radius"
-            app:cardElevation="@dimen/card_elevation"
-            app:cardPreventCornerOverlap="false"
-            app:cardUseCompatPadding="true">
+                    <ImageView
+                        android:id="@+id/img_new"
+                        android:layout_width="@dimen/size_icon_card"
+                        android:layout_height="@dimen/size_icon_card"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_start2" />
 
-            <RelativeLayout
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_gravity="center">
+                    <TextView
+                        android:id="@+id/txt_new"
+                        style="@style/textStyleCardMain"
+                        android:layout_below="@+id/img_new"
+                        android:text="New" />
 
-                <ImageView
-                    android:id="@+id/img_setting"
-                    android:layout_width="40dp"
-                    android:layout_height="40dp"
-                    android:layout_centerHorizontal="true"
-                    android:src="@drawable/ic_settings" />
 
-                <TextView
-                    android:id="@+id/txv_setting"
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/size_margin_card_center"
+            android:layout_marginTop="@dimen/size_margin_card_center"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_storedList"
+                style="@style/cardMainStyle"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_radius_main"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/img_setting"
-                    android:layout_centerHorizontal="true"
-                    android:padding="10dp"
-                    android:text="Settings"
-                    android:textColor="#023d13"
-                    android:textSize="18sp"
-                    android:textStyle="bold" />
+                    android:layout_gravity="center">
 
-                <TextView
+                    <ImageView
+                        android:id="@+id/img_list"
+                        android:layout_width="@dimen/size_icon_card"
+                        android:layout_height="@dimen/size_icon_card"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_list1" />
+
+                    <TextView
+                        android:id="@+id/tv_newword"
+                        style="@style/textStyleCardMain"
+                        android:layout_below="@+id/img_list"
+                        android:text="Vocabulary List" />
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_settings"
+                style="@style/cardMainStyleRight"
+                android:foreground="?selectableItemBackground"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_radius_main"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_below="@+id/txv_setting"
-                    android:layout_centerHorizontal="true"
-                    android:paddingLeft="10dp"
-                    android:text="Notify | Lock "
-                    android:textColor="#023d13"
-                    android:textSize="14sp" />
-            </RelativeLayout>
-        </android.support.v7.widget.CardView>
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/img_setting"
+                        android:layout_width="@dimen/size_icon_card"
+                        android:layout_height="@dimen/size_icon_card"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_settings" />
+
+                    <TextView
+                        android:id="@+id/txv_setting"
+                        style="@style/textStyleCardMain"
+                        android:layout_below="@id/img_setting"
+                        android:text="Settings" />
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_marginBottom="@dimen/size_margin_card_main"
+            android:layout_weight="1"
+            android:orientation="horizontal"
+            android:weightSum="2">
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_share"
+                style="@style/cardMainStyle"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_radius_main"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/img_share"
+                        android:layout_width="@dimen/size_icon_card"
+                        android:layout_height="@dimen/size_icon_card"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_send" />
+
+                    <TextView
+                        android:id="@+id/tv_share"
+                        style="@style/textStyleCardMain"
+                        android:layout_below="@+id/img_share"
+                        android:text="Share" />
+
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+
+            <android.support.v7.widget.CardView
+                android:id="@+id/cv_rate"
+                style="@style/cardMainStyleRight"
+                android:foreground="?selectableItemBackground"
+                app:cardBackgroundColor="@color/white"
+                app:cardCornerRadius="@dimen/card_radius_main"
+                app:cardUseCompatPadding="true">
+
+                <RelativeLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center">
+
+                    <ImageView
+                        android:id="@+id/img_rate"
+                        android:layout_width="@dimen/size_icon_card"
+                        android:layout_height="@dimen/size_icon_card"
+                        android:layout_centerHorizontal="true"
+                        android:src="@drawable/ic_star_noti" />
+
+                    <TextView
+                        android:id="@+id/txv_rate"
+                        style="@style/textStyleCardMain"
+                        android:text="Rate" />
+
+                </RelativeLayout>
+            </android.support.v7.widget.CardView>
+        </LinearLayout>
     </LinearLayout>
-</LinearLayout>
+</RelativeLayout>

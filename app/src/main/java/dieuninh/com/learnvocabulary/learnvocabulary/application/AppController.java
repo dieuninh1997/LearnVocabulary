@@ -2,6 +2,8 @@ package dieuninh.com.learnvocabulary.learnvocabulary.application;
 
 import android.app.Application;
 
+import com.blankj.utilcode.util.Utils;
+
 import java.util.List;
 
 import dieuninh.com.learnvocabulary.learnvocabulary.models.Vocabulary;
@@ -18,6 +20,7 @@ public class AppController extends Application{
     public void onCreate() {
         super.onCreate();
         instance = this;
+        Utils.init(this);
     }
 
     public static synchronized AppController getInstance() {

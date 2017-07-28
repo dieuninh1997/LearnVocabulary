@@ -1,8 +1,8 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
 
-    <color name="colorPrimary">#436ec9</color>
-    <color name="colorPrimaryDark">#3167ce</color>
+    <color name="colorPrimary">#2189f6</color>
+    <color name="colorPrimaryDark">#2189F6</color>
     <color name="colorAccent">#ff5500</color>
 
     <color name="gplus_color_1">#3e802f</color>
